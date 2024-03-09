@@ -11,12 +11,12 @@ let SignoutBtn = document.getElementById('signoutbutton');
 let Signout = () => {
   sessionStorage.removeItem("user-creds"); 
   sessionStorage.removeItem("user-info");  
-  window.location.href = "https://agudanieldev.github.io/tradezanga.com/login.html";
+  window.location.href = "https://tradezanga.com/login.html";
 }
 
 let Checkcred = () => {
   if (!sessionStorage.getItem("user-creds"))
-    window.location.href = "https://agudanieldev.github.io/tradezanga.com/login.html";
+    window.location.href = "https://tradezanga.com/login.html";
   else {
     MsgHead.innerText = `${UserCreds.email}`;
     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
