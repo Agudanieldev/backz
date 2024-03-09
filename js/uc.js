@@ -11,7 +11,7 @@ let SignoutBtn = document.getElementById('signoutbutton');
 let Signout = () => {
   sessionStorage.removeItem("user-creds"); 
   sessionStorage.removeItem("user-info");  
-  window.location.href = "../login.html";
+  window.location.href = "https://agudanieldev.github.io/tradezanga.com/login.html";
 }
 
 let Checkcred = () => {
