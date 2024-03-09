@@ -16,7 +16,7 @@ let Signout = () => {
 
 let Checkcred = () => {
   if (!sessionStorage.getItem("user-creds"))
-    window.location.href = "../login.html";
+    window.location.href = "https://agudanieldev.github.io/tradezanga.com/login.html";
   else {
     MsgHead.innerText = `${UserCreds.email}`;
     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
