@@ -8,11 +8,6 @@ let GreetHead = document.getElementById('greet');
 let MainBalance = document.getElementById('mainbalance');
 let SignoutBtn = document.getElementById('signoutbutton');
 
-let Signout = () => {
-  sessionStorage.removeItem("user-creds"); 
-  sessionStorage.removeItem("user-info");  
-  window.location.href = "https://tradezanga.com/login.html";
-}
 
 let Checkcred = () => {
   if (!sessionStorage.getItem("user-creds"))
@@ -24,5 +19,10 @@ let Checkcred = () => {
   }
 }
 
-window.addEventListener('load', Checkcred);
+let Signout = () => {
+  sessionStorage.removeItem("user-creds"); 
+  sessionStorage.removeItem("user-info");  
+  window.location.href = "https://tradezanga.com/login.html";
+}
+// window.addEventListener('load', Checkcred);
 SignoutBtn.addEventListener('click', Signout);
