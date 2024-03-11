@@ -22,7 +22,7 @@ let Checkcred = () => {
 let Signout = () => {
   sessionStorage.removeItem("user-creds"); 
   sessionStorage.removeItem("user-info");  
-  window.location.href = "https://tradezanga.com/login.html";
+  window.location.href = "https://dashboard.tradezanga.com";
 }
 window.addEventListener('load', Checkcred);
 SignoutBtn.addEventListener('click', Signout);
