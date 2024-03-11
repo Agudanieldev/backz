@@ -11,7 +11,7 @@ let SignoutBtn = document.getElementById('signoutbutton');
 
 let Checkcred = () => {
   if (!sessionStorage.getItem("user-creds"))
-    window.location.href = "https://tradezanga.com/login.html";
+    window.location.href = "https://dashboard.tradezanga.com";
   else {
     MsgHead.innerText = `${UserCreds.email}`;
     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
