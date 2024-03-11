@@ -24,5 +24,5 @@ let Signout = () => {
   sessionStorage.removeItem("user-info");  
   window.location.href = "https://tradezanga.com/login.html";
 }
-// window.addEventListener('load', Checkcred);
+window.addEventListener('load', Checkcred);
 SignoutBtn.addEventListener('click', Signout);

@@ -132,6 +132,7 @@ button {
     display: none;
     position: fixed;
     transform: translate(-17%, -36%);
+    transition: .9s;
   }
   .withraw-wrapper .toclose {
     margin-top: 60px;

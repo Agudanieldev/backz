@@ -18,7 +18,9 @@
   }
 
   function showboxW() {
+    boxbodyWith.style.transition = ".9s";
     boxbodyWith.style.display = "flex";
+
   }
   function closeboxW() {
     boxbodyWith.style.display = "none";
