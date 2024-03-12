@@ -11,7 +11,7 @@ let SignoutBtn = document.getElementById('signoutbutton');
 
 let Checkcred = () => {
   if (!sessionStorage.getItem("user-creds"))
-    window.location.href = "https://tradezanga.com/login.html";
+    window.location.href = "logindash.html";
   else {
     MsgHead.innerText = `${UserCreds.email}`;
     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
@@ -22,7 +22,7 @@ let Checkcred = () => {
 let Signout = () => {
   sessionStorage.removeItem("user-creds"); 
   sessionStorage.removeItem("user-info");  
-  window.location.href = "https://tradezanga.com/login.html";
+  window.location.href = "logindash.html";
 }
 window.addEventListener('load', Checkcred);
 SignoutBtn.addEventListener('click', Signout);
