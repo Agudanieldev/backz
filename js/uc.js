@@ -5,9 +5,11 @@ let UserInfo = JSON.parse(sessionStorage.getItem("user-info"));
 
 let MsgHead = document.getElementById('msg');
 let GreetHead = document.getElementById('greet');
-let MainBalance = document.getElementById('mainbalance');
 let SignoutBtn = document.getElementById('signoutbutton');
 
+let ActiveDeposit = document.getElementById('activedeposit');
+let Profit = document.getElementById('profit');
+let TotalBalance = document.getElementById('totalbalance');
 
 let Checkcred = () => {
   if (!sessionStorage.getItem("user-creds"))
@@ -15,7 +17,9 @@ let Checkcred = () => {
   else {
     MsgHead.innerText = `${UserCreds.email}`;
     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
-    MainBalance.innerText = `${UserInfo.balance}`;
+    ActiveDeposit.innerText = `${UserInfo.active_deposit}`;
+    Profit.innerText = `${UserInfo.Profit}`;
+    TotalBalance.innerText = `${UserInfo.total_balance}`;
   }
 }
 
