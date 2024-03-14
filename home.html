@@ -133,56 +133,94 @@
                 <div class="sales">
                     <div class="status">
                         <div class="info">
-                            <h3>Main Balance</h3>
-                            <h1>$<span id="mainbalance"></span><h1></h1></h1>
+                            <h3>Active Deposit</h3>
+                            <h1>$<span id="activedeposit"></span></h1>
                         </div>
-                        <div class="progresss">
+                        <!-- <div class="progresss">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
                                 <p>+81%</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="visits">
                     <div class="status">
                         <div class="info">
-                            <h3>Threshold</h3>
-                            <h1>24,981</h1>
+                            <h3>Profit</h3>
+                            <h1>$<span id="profit"></span></h1>
                         </div>
-                        <div class="progresss">
+                        <!-- <div class="progresss">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
                                 <p>-48%</p>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="searches">
                     <div class="status">
                         <div class="info">
-                            <h3>Market Capital</h3>
-                            <h1>14,147</h1>
+                            <h3>Total Balance</h3>
+                            <h1>$<span id="totalbalance"></span></h1>
                         </div>
-                        <div class="progresss">
+                        <!-- <div class="progresss">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>+21%</p>
+                                <p>31%</p>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                
+                <!-- <div class="searches">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Total Balance</h3>
+                            <h1>$<span id="totalbalance">100000</span></h1>
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36" stroke-dasharray="0, 227"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p id="percentage">0%</p>
                             </div>
                         </div>
                     </div>
-                </div>
+                    
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            updateProgress();
+                        });
+                    
+                        function updateProgress() {
+                            const totalBalance = parseFloat(document.getElementById("totalbalance").innerText);
+                            const percentage = (totalBalance / 100000) * 100;
+                    
+                            const circle = document.querySelector('.progresss svg circle');
+                            const circumference = 2 * Math.PI * circle.getAttribute('r');
+                            const dashOffset = circumference - (percentage / 100) * circumference;
+                            
+                            circle.style.strokeDasharray = `${circumference}, ${circumference}`;
+                            circle.style.strokeDashoffset = dashOffset;
+                    
+                            document.getElementById("percentage").innerText = percentage.toFixed(2) + "%";
+                        }
+                    </script>
+                </div> -->
             </div>
             <!-- End of Analyses -->
 
-            <!-- Transaction Modal -->
+            
 
+            <!-- Transaction Modal -->
             <section>
                 <div id="boxwrap" class="mpay-wrapper">
                   <div class="mpay-box">
@@ -199,6 +237,8 @@
                 </div>
      
               </section>
+
+ 
               
               <section>
                 <form action="" id="WithdrawalRequests">
@@ -226,6 +266,34 @@
               
               </section>
             <!-- End of Transaction Modal -->
+
+                         <!-- TradingView Widget BEGIN -->
+<!-- <br><br>
+<div class="tradingview-widget-container">
+<div class="tradingview-widget-container__widget"></div>
+<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-heat-map.js" async>
+{
+"width": "100%",
+"height": "100%",
+"currencies": [
+  "EUR",
+  "USD",
+  "JPY",
+  "GBP",
+  "CHF",
+  "AUD",
+  "CAD",
+  "NZD",
+  "CNY"
+],
+"isTransparent": false,
+"colorTheme": "dark",
+"locale": "en"
+}
+</script>
+</div> -->
+<!-- TradingView Widget END -->
 
 
         </main>
@@ -271,7 +339,7 @@
                 <div class="btn-cont">
                     <div class=""><button id="preview" onclick="showbox()"><span class="material-icons-sharp">
                         currency_bitcoin
-                    </span><h3>Make Payment</h3></button></div>
+                    </span><h3>Deposit</h3></button></div>
                     <div><button id="preview2" onclick="showboxW()"><span class="material-icons-sharp">
                         currency_exchange
                     </span><h3>Withdraw</h3></button></div>
