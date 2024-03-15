@@ -47,6 +47,28 @@ html{
     font-size: 14px;
 }
 
+/* Define the styles for the scrollbar track */
+::-webkit-scrollbar {
+    width: 2px; /* Set the width of the scrollbar */
+    background-color: #070708; /* Set the color of the thumb */
+  }
+  
+  /* Define the styles for the scrollbar handle or thumb */
+  ::-webkit-scrollbar-thumb {
+    background-color: #4d4d4d; /* Set the color of the thumb */
+    border-radius: 6x; /* Set the border radius to round the corners */
+  }
+  
+  /* Define the styles for the scrollbar track on hover */
+  ::-webkit-scrollbar-track:hover {
+    background-color: #242a37; /* Set the background color on hover */
+  }
+  
+  /* Define the styles for the scrollbar handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(101, 101, 101); /* Set the thumb color on hover */
+  }
+
 body{
     width: 100vw;
     height: 100vh;
@@ -210,7 +232,7 @@ button {
     padding: 6px 12px;
     margin: 6px;
     border: 0px;
-    border-radius: 10px;
+    border-radius: 5px;
     display: flex;
     vertical-align: center;
     box-shadow: 0 2rem 3rem var(--color-light);
@@ -229,13 +251,14 @@ button {
 
   .mpay-wrapper {
     width: 100%;
-    background-color: #0000008e;
+    background-color: #000000c8;
     height: 100vh;
     display: flex;
     justify-content: center;
     display: none;
     position: fixed;
     transform: translate(-17%, -36%);
+    z-index: 2;
   }
 
   .mpay-wrapper .mpay-box {
@@ -263,7 +286,7 @@ button {
   }
   
   .withraw-wrapper {
-    background-color: #0000008e;
+    background-color: #000000c8;
     width: 100%;
     height: 100vh;
     transform: translate(0px, -234px);
@@ -340,22 +363,248 @@ button {
 }
 
 
+h2.demo-title {
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 50px 0px 10px;
+  }
+  
+  .pricing-table {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    /* background: #ffffff; */
+  }
+  
+  .pricing-table .ptable-item {
+    width: 50%;
+    padding: 0 15px;
+    margin-bottom: 30px;
+  }
+  
+  @media (max-width: 992px) {
+    .pricing-table .ptable-item {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .pricing-table .ptable-item {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .pricing-table .ptable-item {
+      width: 100%;
+    }
+  }
+  
+  .pricing-table .ptable-single {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .pricing-table .ptable-header,
+  .pricing-table .ptable-body,
+  .pricing-table .ptable-footer {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+  }
+  
+  .pricing-table .ptable-status ,
+  .pricing-table .ptable-title,
+  .pricing-table .ptable-price,
+  .pricing-table .ptable-description,
+  .pricing-table .ptable-action {
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .pricing-table .ptable-single {
+    background: #484850;
+    border-radius: 4px;
+  }
+  
+  .pricing-table .ptable-single:hover {
+    box-shadow: 0 2rem 3rem var(--color-light);
+  }
+  
+  .pricing-table .ptable-header {
+    margin: 0 30px;
+    padding: 30px 0 45px 0;
+    width: auto;
+    background: #2A293E;
+  }
+  
+  .pricing-table .ptable-header::before,
+  .pricing-table .ptable-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid #484850;
+  }
+  
+  .pricing-table .ptable-header::before {
+    right: 50%;
+    border-right: 250px solid transparent;
+  }
+  
+  .pricing-table .ptable-header::after {
+    left: 50%;
+    border-left: 250px solid transparent;
+  }
+  
+  .pricing-table .ptable-item.featured-item .ptable-header {
+    background: var(--color-primary);;
+  }
+  
+  .pricing-table .ptable-status {
+    margin-top: -30px;
+  }
+  
+  .pricing-table .ptable-status span {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 30px;
+    padding: 5px 0;
+    text-align: center;
+    color: var(--color-primary);;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    background: #2A293E;
+  }
+  
+  .pricing-table .ptable-status span::before,
+  .pricing-table .ptable-status span::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid var(--color-primary);;
+  }
+  
+  .pricing-table .ptable-status span::before {
+    right: 50%;
+    border-right: 25px solid transparent;
+  }
+  
+  .pricing-table .ptable-status span::after {
+    left: 50%;
+    border-left: 25px solid transparent;
+  }
+  
+  .pricing-table .ptable-title h2 {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 2px;
+  }
+  
+  .pricing-table .ptable-price h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 15px;
+  }
+  
+  .pricing-table .ptable-price h2 small {
+    position: absolute;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 4px;
+    margin-left: -10px;
+  }
+  
+  .pricing-table .ptable-price h2 span {
+    margin-left: 3px;
+    font-size: 16px;
+    font-weight: 300;
+  }
+  
+  .pricing-table .ptable-body {
+    padding: 20px 0;
+  }
+  
+  .pricing-table .ptable-description ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .pricing-table .ptable-description ul li {
+    /* color: #2A293E; */
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    padding: 10px 7px;
+    border-bottom: 2px solid #2A293E;
+  }
+  
+  .pricing-table .ptable-description ul li:last-child {
+    border: none;
+  }
+  
+  .pricing-table .ptable-footer {
+    padding-bottom: 30px;
+  }
+  
+  .pricing-table .ptable-action a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #2A293E;
+    color: var(--color-primary);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-decoration: none;
+    background: #2A293E;
+    border: 2px solid var(--color-primary);
+    /* background:var(--color-primary); */
+    border-radius: 4px;
+    transition: .3s;
+  }
+  
+  .pricing-table .ptable-action a:hover {
+    color: #2A293E;
+    background: var(--color-primary);
+  }
+  
+  .pricing-table .ptable-item.featured-item .ptable-action a {
+    color: #2A293E;
+    background: var(--color-primary);;
+  }
+  
+  .pricing-table .ptable-item.featured-item .ptable-action a:hover {
+    color: var(--color-primary);;
+    background: #2A293E;
+  }
+
+
 
   
   .with-button {
-    /* text-align: end; */
     transform: translate(130px, -26px);
   }
   
   .tradetool {
-    /* padding: 20px auto; */
     background: #0b1025;
     width: 100%;
     overflow-x: scroll;
   }
-  /* #tt {
-    height: 1000px;
-  } */
+
 
 
 
@@ -417,7 +666,7 @@ b{
     width: 96%;
     margin: 0 auto;
     gap: 1.8rem;
-    grid-template-columns: 12rem auto 23rem;
+    grid-template-columns: 12rem auto 16rem;
 }
 
 aside{
@@ -521,6 +770,7 @@ aside .sidebar .message-count{
 
 main{
     margin-top: 1.4rem;
+    overflow-y: auto;
 }
 
 main .analyse{
@@ -837,7 +1087,7 @@ main .recent-orders a{
 @media screen and (max-width: 1200px) {
     .container{
         width: 95%;
-        grid-template-columns: 7rem auto 23rem;
+        grid-template-columns: 7rem auto 16rem;
     }
 
     aside .logo h2{
