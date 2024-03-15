@@ -18,7 +18,7 @@ let Checkcred = () => {
     MsgHead.innerText = `${UserCreds.email}`;
     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
     ActiveDeposit.innerText = `${UserInfo.active_deposit}`;
-    Profit.innerText = `${UserInfo.Profit}`;
+    Profit.innerText = `${UserInfo.profit}`;
     TotalBalance.innerText = `${UserInfo.total_balance}`;
   }
 }
