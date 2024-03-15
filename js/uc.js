@@ -11,37 +11,37 @@ let ActiveDeposit = document.getElementById('activedeposit');
 let Profit = document.getElementById('profit');
 let TotalBalance = document.getElementById('totalbalance');
 
-let Checkcred = () => {
-  if (!sessionStorage.getItem("user-creds"))
-    window.location.href = "index.html";
-  else {
-    MsgHead.innerText = `${UserCreds.email}`;
-    GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
-    ActiveDeposit.innerText = `${UserInfo.active_deposit}`;
-    Profit.innerText = `${UserInfo.profit}`;
-    TotalBalance.innerText = `${UserInfo.total_balance}`;
-  }
-}
-
 // let Checkcred = () => {
 //   if (!sessionStorage.getItem("user-creds"))
 //     window.location.href = "index.html";
 //   else {
 //     MsgHead.innerText = `${UserCreds.email}`;
 //     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
-
-    // Set up real-time listener for user info
-//     db.collection("users").doc(UserCreds.uid)
-//       .onSnapshot((doc) => {
-//         if (doc.exists) {
-//           const data = doc.data();
-//           ActiveDeposit.innerText = `${data.active_deposit}`;
-//           Profit.innerText = `${data.profit}`;
-//           TotalBalance.innerText = `${data.total_balance}`;
-//         }
-//       });
+//     ActiveDeposit.innerText = `${UserInfo.active_deposit}`;
+//     Profit.innerText = `${UserInfo.profit}`;
+//     TotalBalance.innerText = `${UserInfo.total_balance}`;
 //   }
 // }
+
+let Checkcred = () => {
+  if (!sessionStorage.getItem("user-creds"))
+    window.location.href = "index.html";
+  else {
+    MsgHead.innerText = `${UserCreds.email}`;
+    GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
+
+    Set up real-time listener for user info
+    db.collection("users").doc(UserCreds.uid)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          ActiveDeposit.innerText = `${data.active_deposit}`;
+          Profit.innerText = `${data.profit}`;
+          TotalBalance.innerText = `${data.total_balance}`;
+        }
+      });
+  }
+}
 
 let Signout = () => {
   sessionStorage.removeItem("user-creds"); 
