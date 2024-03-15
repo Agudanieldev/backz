@@ -318,7 +318,9 @@
         sessionStorage.setItem("user-info", JSON.stringify({
           firstname: docSnap.data().firstname,
           lastname: docSnap.data().lastname,
-          balance: docSnap.data().balance
+          active_deposit: docSnap.data().active_deposit,
+          profit: docSnap.data().profit,
+          total_balance: docSnap.data().total_balance
         }));
         sessionStorage.setItem("user-creds", JSON.stringify(userCredential.user));
         window.location.href = "home.html";
