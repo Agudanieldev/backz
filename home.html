@@ -176,42 +176,7 @@
                     </div>
                 </div>
                 
-                <!-- <div class="searches">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Total Balance</h3>
-                            <h1>$<span id="totalbalance">100000</span></h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36" stroke-dasharray="0, 227"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <p id="percentage">0%</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <script>
-                        document.addEventListener("DOMContentLoaded", function() {
-                            updateProgress();
-                        });
-                    
-                        function updateProgress() {
-                            const totalBalance = parseFloat(document.getElementById("totalbalance").innerText);
-                            const percentage = (totalBalance / 100000) * 100;
-                    
-                            const circle = document.querySelector('.progresss svg circle');
-                            const circumference = 2 * Math.PI * circle.getAttribute('r');
-                            const dashOffset = circumference - (percentage / 100) * circumference;
-                            
-                            circle.style.strokeDasharray = `${circumference}, ${circumference}`;
-                            circle.style.strokeDashoffset = dashOffset;
-                    
-                            document.getElementById("percentage").innerText = percentage.toFixed(2) + "%";
-                        }
-                    </script>
-                </div> -->
+                
             </div>
             <!-- End of Analyses -->
 
@@ -390,6 +355,7 @@
 
             <!-- TradingView Widget BEGIN -->
             <br><br>
+            <div class="td">
             <div class="tradingview-widget-container scroll">
             <div class="tradingview-widget-container__widget"></div>
             <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
@@ -414,6 +380,7 @@
             }
             </script>
             </div>
+        </div>
             <!-- TradingView Widget END -->
 
                        <!-- Transaction Modal -->
@@ -513,60 +480,7 @@
                         currency_exchange
                     </span><h3>Withdraw</h3></button></div>
                 </div>
-                <!-- <div class="header">
-                    <h2>Notification</h2>
-                    <span class="material-icons-sharp">
-                        notifications_none
-                    </span>
-                </div>
-
-                <div class="notification">
-                    <div class="icon">
-                        <span class="material-icons-sharp">
-                            volume_up
-                        </span>
-                    </div>
-                    <div class="content">
-                        <div class="info">
-                            <h3>Workshop</h3>
-                            <small class="text_muted">
-                                08:00 AM - 12:00 PM
-                            </small>
-                        </div>
-                        <span class="material-icons-sharp">
-                            more_vert
-                        </span>
-                    </div>
-                </div>
-
-                <div class="notification deactive">
-                    <div class="icon">
-                        <span class="material-icons-sharp">
-                            edit
-                        </span>
-                    </div>
-                    <div class="content">
-                        <div class="info">
-                            <h3>Workshop</h3>
-                            <small class="text_muted">
-                                08:00 AM - 12:00 PM
-                            </small>
-                        </div>
-                        <span class="material-icons-sharp">
-                            more_vert
-                        </span>
-                    </div>
-                </div>
-
-                <div class="notification add-reminder">
-                    <div>
-                        <span class="material-icons-sharp">
-                            add
-                        </span>
-                        <h3>Add Reminder</h3>
-                    </div>
-                </div> -->
-
+                
             </div>
 
         </div>
@@ -574,11 +488,6 @@
 
     </div>
 
-    <!-- <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-      crossorigin="anonymous"
-    ></script> -->
 
     <script src="https://tradezanga.com/js/jquery.js"></script>
     <script src="js/preloader.js"></script>
