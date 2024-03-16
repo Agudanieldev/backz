@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+
+<title>Forgot Password</title>
+
+<!-- Fav Icon -->
+<link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+
+<!-- Stylesheets -->
+<link href="https://tradezanga.com/css/font-awesome-all.css" rel="stylesheet">
+<link href="https://tradezanga.com/css/flaticon.css" rel="stylesheet">
+<link href="https://tradezanga.com/css/style.css" rel="stylesheet">
+<link href="https://tradezanga.com/css/responsive.css" rel="stylesheet">
+<link href="https://tradezanga.com/css/auth.css" rel="stylesheet">
+
+</head>
+
+
+<!-- page wrapper -->
+<body>
+
+    <div class="boxed_wrapper home_2">
+
+  
+        <!-- login -->
+
+        <form id="MainForm"> <!-- Fix capitalization here -->
+
+          <div class="container-wrapper">
+          <div class="auth-container">
+            <h2 style="color:#f8f8f8;" >Forgot Password</h2><br>
+        
+            <!-- <label for="email"><b>Email</b></label> -->
+            <input type="text" placeholder="Enter Email" name="email" id="emailInp" required>
+        
+           
+        
+            <!-- <p>By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p> -->
+            <button type="submit" class="registerbtn" id="forgotpasslabel" style="color: #e7e7e7;">Send reset link</button>
+            <div class="container signin">
+            <p>Open new account <button type="button"><a href="https://tradezanga.com/signup.html">Sign up</a></button></p>
+            <p> Back to <button type="button"><a href="https://tradezanga.com/">Home</a></button></p>
+            <!-- <p><button type="button"><a href="signup.html">Forgot Password?</a></button></p> -->
+          </div>
+          </div>
+    
+          
+        </div>
+        <div class="auth-image">
+    
+        </div>
+        </form>
+    
+        <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+
+   
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+        <script type="module">
+          import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+          import { getFirestore, collection, query, where, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+          import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      
+          const firebaseConfig = {
+        apiKey: "AIzaSyAVYnmzJvPlFWOjXiJDFChXZ8zAzQp1Ufw",
+        authDomain: "oceandwell-01.firebaseapp.com",
+        databaseURL: "https://oceandwell-01-default-rtdb.firebaseio.com",
+        projectId: "oceandwell-01",
+        storageBucket: "oceandwell-01.appspot.com",
+        messagingSenderId: "288421578797",
+        appId: "1:288421578797:web:5c1a7abf0b7e133b5190a4",
+        measurementId: "G-LFHVNGR715"
+      };
+      
+          const app = initializeApp(firebaseConfig);
+          const db = getFirestore(app);
+          const auth = getAuth(app);
+      
+          let EmailInp = document.getElementById('emailInp');
+          let MainForm = document.getElementById('MainForm');
+      
+          let sendResetLink = async evt => {
+              evt.preventDefault();
+      
+              // Check if the email exists in the database
+              const usersRef = collection(db, 'UserAuthList');
+              const q = query(usersRef, where("email", "==", EmailInp.value));
+              const querySnapshot = await getDocs(q);
+      
+              if (!querySnapshot.empty) {
+                  // If email exists, send reset link
+                  sendPasswordResetEmail(auth, EmailInp.value)
+                      .then(() => {
+                          alert("Password reset email sent successfully!");
+                      })
+                      .catch((error) => {
+                          console.error(error.message);
+                          alert(error.message);
+                      });
+              } else {
+                  alert("This email is not registered.");
+              }
+          };
+      
+          MainForm.addEventListener('submit', sendResetLink);
+      </script>
+      
+
+    </div>
+
+
+      <!-- jequery plugins -->
+      <script src="https://tradezanga.com/js/jquery.js"></script>
+      <script src="https://tradezanga.com/js/scrollbar.js"></script>
+  
+      <!-- main-js -->
+      <script src="https://tradezanga.com/js/script.js"></script>
+      <!-- <script type="module" src="js/signup.js"></script> -->
+
+</body><!-- End of .page_wrapper -->
+</html>
+ 
