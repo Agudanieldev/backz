@@ -21,6 +21,7 @@
 <link href="https://tradezanga.com/css/style.css" rel="stylesheet">
 <link href="https://tradezanga.com/css/responsive.css" rel="stylesheet">
 <link href="https://tradezanga.com/css/auth.css" rel="stylesheet">
+<link rel="stylesheet" href="css/custom.css">
 
 </head>
 
@@ -162,7 +163,7 @@
                             </nav>
                         </div>
                         <!-- <div class="menu-right-content">
-                            <div class="search-box-outer search-toggler"><i class="flaticon-search"></i></div>
+                            <div class="search-box-outer search-toggler"><!-- <i class="flaticon-search"></i> --></div>
                             <div class="clients-box">
                                 <div class="icon-box"><img src="images/icons/icon-31.png" alt=""></div>
                                 <a href="index.html">Client Portal<i class="flaticon-right-down"></i></a>
@@ -189,7 +190,7 @@
                             </nav>
                         </div>
                         <div class="menu-right-content">
-                            <div class="search-box-outer search-toggler"><i class="flaticon-search"></i></div>
+                            <div class="search-box-outer search-toggler"><!-- <i class="flaticon-search"></i> --></div>
                             <div class="clients-box">
                                 <div class="icon-box"><img src="images/icons/icon-31.png" alt=""></div>
                                 <a href="https://tradezanga.com/login.html">Client Portal<i class="flaticon-right-down"></i></a>
@@ -240,7 +241,8 @@
 
           <div class="container-wrapper">
           <div class="auth-container">
-            <h4 style="color:#f8f8f8;" >Login</h4><br>
+            <!-- <h4 style="color:#f8f8f8;" >Login</h4><br> -->
+            <h1 style="padding-bottom: 26px; margin-bottom: 26px; border-bottom: 4px solid #383838;">Login</h1>
              <!-- <img src="images/logo-4.png" alt=""> -->
             <!-- <p>Please fill in this form to login to your account.</p> -->
             <!-- <hr> -->
@@ -255,6 +257,15 @@
         
             <!-- <p>By creating an account, you agree to our <a href="#">Terms & Privacy</a>.</p> -->
             <button type="submit" class="registerbtn">Login</button>
+
+            <!-- preloader -->
+            <div class="prewrap" style="display: flex; justify-content: center">
+                <div class="circle-container" id="preloader" style="display: none;">
+                    <div class="circle-progress"></div>
+                </div>
+            </div><br>
+            <!-- preloader -->
+
             <div class="container signin">
             <p>Already have an account? <button type="button"><a href="https://tradezanga.com/signup.html">Sign up</a></button></p>
             <!-- <p><button type="button"><a href="signup.html">Forgot Password?</a></button></p> -->
@@ -276,67 +287,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-      import { getFirestore, doc, getDoc} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-      import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
     
-      const firebaseConfig = {
-        apiKey: "AIzaSyAVYnmzJvPlFWOjXiJDFChXZ8zAzQp1Ufw",
-        authDomain: "oceandwell-01.firebaseapp.com",
-        databaseURL: "https://oceandwell-01-default-rtdb.firebaseio.com",
-        projectId: "oceandwell-01",
-        storageBucket: "oceandwell-01.appspot.com",
-        messagingSenderId: "288421578797",
-        appId: "1:288421578797:web:5c1a7abf0b7e133b5190a4",
-        measurementId: "G-LFHVNGR715"
-      };
-    
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore();
-      const auth = getAuth(app);
-      // const dbref = ref(db);
-
-      let EmailInp = document.getElementById('emailInp');
-      let PassInp = document.getElementById('passwordInp');
-      let MainForm = document.getElementById('MainForm');
-
-
-
-    let SignInUser = evt => {
-  evt.preventDefault();
-
-  signInWithEmailAndPassword(auth, EmailInp.value, PassInp.value)
-    .then(async (userCredential) => {
-
-      var ref = doc(db, "UserAuthList", userCredential.user.uid);
-      const docSnap = await getDoc(ref);
-
-      if (docSnap.exists()) {
-        sessionStorage.setItem("user-info", JSON.stringify({
-          firstname: docSnap.data().firstname,
-          lastname: docSnap.data().lastname,
-          active_deposit: docSnap.data().active_deposit,
-          profit: docSnap.data().profit,
-          total_balance: docSnap.data().total_balance
-        }));
-        sessionStorage.setItem("user-creds", JSON.stringify(userCredential.user));
-        window.location.href = "home.html";
-      }
-
-    })
-    .catch((error) => {
-      alert(error.message);
-      console.error(error.message);
-      console.error(error.code);
-    });
-};
-
-      MainForm.addEventListener('submit', SignInUser);
-
-
-    </script>
         <!-- End login -->
         
     </div>
@@ -347,8 +298,9 @@
         <script src="https://tradezanga.com/js/scrollbar.js"></script>
     
         <!-- main-js -->
+        <script type="module" src="js/login.js"></script>
         <script src="https://tradezanga.com/js/script.js"></script>
-        <!-- <script type="module" src="js/signup.js"></script> -->
+        <script src="js/custom.js"></script>
 
 </body><!-- End of .page_wrapper -->
 </html>
