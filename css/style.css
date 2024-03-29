@@ -220,6 +220,8 @@ body{
   .handle-preloader .animation-preloader .txt-loading .letters-loading {font-size: 30px; letter-spacing: 10px;}
 }
 
+
+
 a{
     color: var(--color-dark);
 }
@@ -266,7 +268,7 @@ button {
     min-width: 100px;
     height: 150px;
     padding: 20px;
-    margin-top: 500px;
+    margin-top: 400px;
     border-radius: 20px;
     background-color: var(--color-white);
     box-shadow: 0 2rem 3rem var(--color-light);
@@ -286,7 +288,7 @@ button {
   
   }
   .toclose.b {
-    margin-top: 470px;
+    margin-top: 380px;
     color: #ffffff;
   }
   .toclose:hover{
