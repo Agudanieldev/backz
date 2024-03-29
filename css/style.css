@@ -224,6 +224,7 @@ body{
 
 a{
     color: var(--color-dark);
+    cursor: pointer;
 }
   .btn-cont{
     display: flex;
@@ -238,6 +239,7 @@ button {
     display: flex;
     vertical-align: center;
     box-shadow: 0 2rem 3rem var(--color-light);
+    cursor: pointer;
   }
   button:hover {
     background-color: #18793d;
@@ -321,7 +323,7 @@ button {
     padding: 20px;
     margin: 20px;
     /* margin-top: 130px; */
-    transform: translate(0%, 56%);
+    transform: translate(0%, 46%);
     border-radius: 8px;
     background-color: var(--color-white);
     box-shadow: 0 2rem 3rem var(--color-light);
@@ -334,7 +336,7 @@ button {
   .withraw-wrapper .withraw-box .dsign  {
     /* color: red; */
     width: 6px;
-    transform: translate(15px, -50.8px);
+    transform: translate(15px, -50px);
   }
   
   
