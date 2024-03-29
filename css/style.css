@@ -322,7 +322,7 @@ button {
     margin: 20px;
     /* margin-top: 130px; */
     transform: translate(0%, 56%);
-    border-radius: 20px;
+    border-radius: 8px;
     background-color: var(--color-white);
     box-shadow: 0 2rem 3rem var(--color-light);
   }
