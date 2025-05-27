@@ -65,9 +65,7 @@ const SignInUser = async (evt) => {
       showModal("User data not found in database.");
     }
 
-  } 
-  
-  catch (error) {
+  } catch (error) {
     let msg = "Login failed.";
     switch (error.code) {
       case "auth/user-not-found":
