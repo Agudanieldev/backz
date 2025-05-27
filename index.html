@@ -323,6 +323,13 @@
         <script src="js/custom.js"></script>
         <script src="js/home.js"></script>
 
+        <script>
+            sessionStorage.setItem("user-info", JSON.stringify(userData));
+            sessionStorage.setItem("user-creds", JSON.stringify(userCredential.user));
+            window.location.href = "home.html";
+
+        </script>
+
 </body><!-- End of .page_wrapper -->
 </html>
  

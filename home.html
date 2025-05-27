@@ -579,12 +579,12 @@
 
 
 
-    <script type="module"> 
+    <!-- <script type="module"> 
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-// Firebase config
+
 const firebaseConfig = {
   apiKey: "AIzaSyB5kLnG8N55b9HYAt16qOSlosJM39KdM1I",
   authDomain: "tradezanga-9a60e.firebaseapp.com",
@@ -612,9 +612,9 @@ window.addEventListener("DOMContentLoaded", async () => {
       const userData = docSnap.data();
       console.log("Fetched user data:", userData);
 
-      // Update DOM here
+
       document.getElementById("userName").textContent = `${userData.firstname} ${userData.lastname}`;
-      // Populate dashboard stats etc...
+ 
     } else {
       console.error("User data not found.");
     }
@@ -623,8 +623,55 @@ window.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-    </script>
+    </script> -->
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyB5kLnG8N55b9HYAt16qOSlosJM39KdM1I",
+  authDomain: "tradezanga-9a60e.firebaseapp.com",
+  projectId: "tradezanga-9a60e",
+  storageBucket: "tradezanga-9a60e.appspot.com",
+  messagingSenderId: "454930065029",
+  appId: "1:454930065029:web:a093586b5bc485c2d36bec",
+  measurementId: "G-GEMHM4Z3H9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Wait for DOM and session data
+window.addEventListener("DOMContentLoaded", () => {
+  const creds = JSON.parse(sessionStorage.getItem("user-creds"));
+  if (!creds) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const ref = doc(db, "UserAuthList", creds.uid);
+
+  onSnapshot(ref, (docSnap) => {
+    if (docSnap.exists()) {
+      const user = docSnap.data();
+
+      // Update DOM elements
+      document.getElementById("userName").textContent = `${user.firstname} ${user.lastname}`;
+      document.getElementById("activedeposit").textContent = user.active_deposit;
+      document.getElementById("profit").textContent = user.profit;
+      document.getElementById("investmentTier").textContent = user.investment_tier;
+      document.getElementById("totalPropertiesOwned").textContent = user.total_properties_owned;
+      document.getElementById("totalbalance").textContent = user.total_balance;
+    } else {
+      console.error("User document not found.");
+    }
+  }, (err) => {
+    console.error("Realtime listener error:", err);
+  });
+});
+</script>
 
 
 
