@@ -233,11 +233,10 @@ button {
     background-color: #1a8342;
     color: #ffffff;
     padding: 6px 12px;
-    margin: 6px;
+    /* margin: 6px; */
     border: 0px;
     border-radius: 5px;
     display: flex;
-    vertical-align: center;
     box-shadow: 0 2rem 3rem var(--color-light);
     cursor: pointer;
   }
@@ -254,43 +253,42 @@ button {
   }
 
   .mpay-wrapper {
-    width: 130%;
-    height: 130%;
-    background-color: #000000c8;
-    display: flex;
-    justify-content: center;
     display: none;
     position: fixed;
-    /* margin-bottom: 1000px; */
-    transform: translate(-20%, -26%);
-    z-index: 2;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: #000000c8;
+    justify-content: center;
+    align-items: center;
   }
 
   .mpay-wrapper .mpay-box {
-    min-width: 100px;
-    height: 150px;
-    padding: 20px;
-    margin-top: 400px;
-    border-radius: 20px;
     background-color: var(--color-white);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: cente;
     box-shadow: 0 2rem 3rem var(--color-light);
-    word-wrap: break-word;
+    position: relative;
+    
   }
   
   .mpay-wrapper .mpay-box h3 {
-    padding: 20px;
+    padding-bottom: 5px;
+    font-size: 18px;
   }
   .mpay-wrapper .mpay-box .copy-id {
     display: flex;
   }
-  .mpay-wrapper .mpay-box .copy-id h3{
-    padding: 10px;
-    /* padding-bottom: 40px; */
-    width: 220px;
+  .mpay-wrapper .mpay-box .copy-id p{
+    display: flex;
+    padding-bottom: 20px;
   
   }
   .toclose.b {
-    margin-top: 380px;
+    /* margin-top: 380px; */
     color: #ffffff;
   }
   .toclose:hover{
@@ -301,54 +299,57 @@ button {
   }
   
   .withraw-wrapper {
-    background-color: #000000c8;
-    width: 130%;
-    height: 130%;
-    display: flex;
-    justify-content: center;
     display: none;
     position: fixed;
-    transform: translate(-24%, -36%);
-    transition: .9s;
-    z-index: 2;
+    height: auto;
+    padding: 10px;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: #000000c8;
+    justify-content: center;
+    align-items: center;
   }
-  .withraw-wrapper .toclose {
-    margin-top: 250px;
-    /* padding-top: 40px; */
-    color: #ffffff;
-  }
+ 
   .withraw-wrapper .withraw-box{
-    width: 300px;
-    height: 450px;
-    padding: 20px;
-    margin: 20px;
-    /* margin-top: 130px; */
-    transform: translate(0%, 46%);
-    border-radius: 8px;
     background-color: var(--color-white);
+    padding: 20px;
+    margin: 15px;
+    border-radius: 10px;
+    max-width: 350px;
+    width: 90%;
+    text-align: left;
     box-shadow: 0 2rem 3rem var(--color-light);
+    position: relative;
+
+    
+  }
+   .withraw-wrapper .toclose:hover {
+    color: #b6b6b6;
+  }
+   .withraw-wrapper .toclose:hover {
+    color: #b6b6b6;
   }
 
-  .withraw-wrapper .withraw-box .dsign {
-    /* color: red; */
-    /* transform: translate(15px, -50.8px); */
-  }
   .withraw-wrapper .withraw-box .dsign  {
-    /* color: red; */
     width: 6px;
-    transform: translate(15px, -50px);
+    transform: translate(15px, -43.7px);
+  }
+    .with-button {
+      padding: 10px 20px;
+      /* margin-top: 0px; */
   }
   
   
 
   input {
     width: 100%;
-    height: 40px;
+    height: 50px;
     padding: 15px;
-    margin: 5px 0 22px 0;
+    margin: 5px 0 10px 0;
     display: inline-block;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     font-family: var(--text-font);
     background-color: var(--color-background);
     color: var(--color-dark);
@@ -361,11 +362,13 @@ button {
     width: 100%;
     background: rgb(39, 106, 67);
     padding: 6px 10px;
-    border-radius: 8px;
+    border-radius:5px;
     text-align: center;
     margin-bottom: -20px;
+    margin-top: 20px;
     transform: translate(0px, -36px);
-    height: 10;
+    transition: 0.3s;
+    /* height: 10; */
     display: none;
 }
 
@@ -605,10 +608,7 @@ h2.demo-title {
 
 
   
-  .with-button {
-    transform: translate(130px, -26px);
-  }
-  
+
   .tradetool {
     background: #0b1025;
     width: 100%;
@@ -1154,14 +1154,14 @@ main .recent-orders a{
     main table tbody tr td:first-child{
         display: none;
     }
-    .mpay-wrapper {
+    /* .mpay-wrapper {
       height: 800px;
       transform: translate(-30%, -60%);
     }
     .mpay-wrapper .mpay-box {
       margin-top: 300px;
-    }
-    .toclose.b {
+    } */
+    /* .toclose.b {
       margin-top: 270px;
     }
       
@@ -1174,7 +1174,7 @@ main .recent-orders a{
     }
     .withraw-wrapper .toclose {
       margin-top: 80px;
-    }
+    } */
 
 
 }
@@ -1253,7 +1253,7 @@ main .recent-orders a{
         width: 100%;
         margin: 0;
     }
-
+/* 
     .mpay-wrapper {
         transform: translate(-20%, -80%);
       }
@@ -1266,7 +1266,7 @@ main .recent-orders a{
       }
       .withraw-wrapper .toclose {
         margin-top: 270px;
-      }
+      } */
 
 
     .right-section{
@@ -1314,7 +1314,7 @@ main .recent-orders a{
 }
 @media screen and (max-width: 768px) {
 
-  .mpay-wrapper {
+  /* .mpay-wrapper {
     transform: translate(-14%, -60%);
   }
 .withraw-wrapper {
@@ -1326,6 +1326,6 @@ main .recent-orders a{
   }
   .withraw-wrapper .toclose {
     margin-top: 40px;
-  }
+  } */
 
 }

@@ -33,7 +33,7 @@ function submitForm(e) {
   //   Remove the alert
   setTimeout(() => {
     document.querySelector(".alert").style.display = "none";
-  }, 3000);
+  }, 5000);
 
   //   Reset the form
   document.getElementById("WithdrawalRequests").reset();

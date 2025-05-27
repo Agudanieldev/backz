@@ -5,11 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+      <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="css/style.css">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <title>Real Estate</title>
 </head>
 
 <body>
+
+
+          <!-- Modal -->
+    <div id="modal">
+      <div id="modal-content">
+        <!-- <span id="modal-close">&times;</span> -->
+        <span id="modal-close" class="material-icons-sharp">
+                        close
+                    </span>
+        <div id="modal-message">Placeholder</div>
+      </div>
+    </div>
 
     <div class="container">
         <!-- Sidebar Section -->
@@ -27,7 +48,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="home.html" >
+                <a href="Home.html" >
                     <span class="material-icons-sharp">
                         dashboard
                     </span>
@@ -52,7 +73,7 @@
                     </span>
                     <h3>Crypto Tools</h3>
                 </a>
-                <a href="stock.html" >
+                <a href="stock.html">
                     <span class="material-icons-sharp">
                         query_stats
                     </span>
@@ -77,86 +98,395 @@
 
         <!-- Main Content -->
         <main>
-          <h2>Real Estates</h2><br>
-
-
-          <!-- TradingView Widget BEGIN -->
-          <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
-            {
-              "symbols": [
-                ["VNQ|NYSE"],
-                ["AMT|NYSE"],
-                ["SPG|NYSE"]
-              ],
-              "chartOnly": false,
-              "width": "100%",
-              "height": "500",
-              "locale": "en",
-              "colorTheme": "dark",
-              "autosize": true,
-              "showVolume": true,
-              "showMA": true,
-              "hideDateRanges": false,
-              "hideMarketStatus": false,
-              "scalePosition": "right",
-              "scaleMode": "Normal",
-              "fontFamily": "Arial",
-              "fontSize": "12",
-              "noTimeScale": false,
-              "valuesTracking": "1",
-              "changeMode": "price-and-percent"
-            }
-            </script>
-          </div>
-          <!-- TradingView Widget END -->
+            <!-- <h1 id="greet"></h1><br> -->
+            <h2>Real Estate</h2>
 
             
+
+            <!-- Transaction Modal -->
+            <section>
+                <div id="boxwrap" class="mpay-wrapper">
+                  <div class="mpay-box">
+                    <h2>My Bitcoin <br> Wallet Address</h2>
+                    <div class="copy-id">
+                      <div><h3 id="copyText">bc1qg3h7dc740dpkje3f2t744zhzt0vkqcllardvln</h3></div>
+              
+                      <!-- Button to trigger the copy function -->
+                      <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+                    </div>
+                  </div><h1 class="toclose b" id="closebox" onclick="closebox()"><span class="material-symbols-outlined">
+                    close
+                    </span></h1>
+                </div>
+     
+              </section>
+
+ 
+              
+              <section>
+                <form action="" id="WithdrawalRequests">
+                    <div id="boxwrap-with" class="withraw-wrapper">
+                    
+                  <div class="withraw-box"><div class="alert">Your request has been successfully sent.</div>
+                    <h2>Withrawal</h2><br>
+                    
+                    <label for=""><h4>First Name</h4></label>
+                    <h4><input type="text" id="name" required/></h4>
+                    <label for=""><h4>Email</h4></label>
+                    <h4><input type="email" id="emailId" required/></h4>
+                    <label for=""><h4> Bitcoin Wallet Address</h4></label>
+                    <h4><input type="text" id="walletId" required/></h4>
+                    <label for=""><h4>Amount</h4></label>
+                    <input type="number" id="amount" class="myinput" required/>
+                   
+                    <h3 class="dsign">$</h3>
+                    <button class="with-button" type="submit">Send Request</button>
+                  </div><h1 id="closebox-with" class="toclose" onclick="closeboxW()"><span class="material-symbols-outlined">
+                    close
+                    </span></h1>
+                </div>
+            </form>
+              
+              </section>
+            <!-- End of Transaction Modal -->
+            
+            <!-- Plans -->
+            <div>  
+              <img src="images/infinite-shares-logo.png" style="width: 100px; margin: 0 auto; margin-bottom: -30px; filter: brightness(4);" alt="">
+
+            <h2 class="demo-title">Infinite Shares Investment Packages<hr></h2>
+            <div class="pricing-table">
+              <div class="ptable-item">
+                <div class="ptable-single">
+                  <div class="ptable-header">
+                    <div class="ptable-title">
+                      <h2>Silver – Cleveland, OH</h2>
+                    </div>
+                    <div class="ptable-price">
+                      <h2><small>$</small>500 -</h2>
+                      <h2><small>$</small>5,000</h2>
+                    </div>
+                  </div>
+                  <div class="ptable-body">
+                    <div class="ptable-description">
+                      <ul>
+                        <li>Entry-Level Investment Property</li>
+                        <li>Estimated ROI: 4% – 6% Annually</li>
+                        <li>Located in an Emerging Rental Market</li>
+                        <li>Low Maintenance, Single-Family Unit</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="ptable-footer">
+                    <div class="ptable-action">
+                      <a id="preview" onclick="showbox()">Invest</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptable-item featured-item">
+                <div class="ptable-single">
+                  <div class="ptable-header">
+                    <div class="ptable-status">
+                      <span>Hot</span>
+                    </div>
+                    <div class="ptable-title">
+                      <h2>Gold – Austin, TX</h2>
+                    </div>
+                    <div class="ptable-price">
+                      <h2><small>$</small>6,000 -</h2>
+                      <h2><small>$</small>15,000</h2>
+                    </div>
+                  </div>
+                  <div class="ptable-body">
+                    <div class="ptable-description">
+                      <ul>
+                        <li>Mid-Tier Multifamily Investment</li>
+                        <li>Estimated ROI: 7% – 9% Annually</li>
+                        <li>High Demand Rental Zone</li>
+                        <li>Appreciation-Driven Growth Area</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="ptable-footer">
+                    <div class="ptable-action">
+                      <a id="preview" onclick="showbox()">Invest</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptable-item">
+                <div class="ptable-single">
+                  <div class="ptable-header">
+                    <div class="ptable-title">
+                      <h2>Platinum – Seattle, WA</h2>
+                    </div>
+                    <div class="ptable-price">
+                      <h2><small>$</small>16,000 -</h2>
+                      <h2><small>$</small>50,000</h2>
+                    </div>
+                  </div>
+                  <div class="ptable-body">
+                    <div class="ptable-description">
+                      <ul>
+                        <li>High-Yield Urban Property Portfolio</li>
+                        <li>Projected ROI: 10% – 13% Annually</li>
+                        <li>Prime Location with Tech Industry Spillover</li>
+                        <li>Eligible for Short-Term Rental Income</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="ptable-footer">
+                    <div class="ptable-action">
+                      <a id="preview" onclick="showbox()">Invest</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ptable-item">
+                <div class="ptable-single">
+                  <div class="ptable-header">
+                    <div class="ptable-title">
+                      <h2>Diamond – Manhattan, NY</h2>
+                    </div>
+                    <div class="ptable-price">
+                      <h2><small>$</small>50,000 -</h2>
+                      <h2><small>$</small>200,000</h2>
+                    </div>
+                    <div class="ptable-price">
+                      <!-- Reserved for custom deals -->
+                    </div>
+                  </div>
+                  <div class="ptable-body">
+                    <div class="ptable-description">
+                      <ul>
+                        <li>Premium Commercial Property Holdings</li>
+                        <li>Capital Growth Potential: 15%+ Yearly</li>
+                        <li>Class-A Assets in Core Manhattan Districts</li>
+                        <li>Institutional Grade Investment Opportunity</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="ptable-footer">
+                    <div class="ptable-action">
+                      <a id="preview" onclick="showbox()">Invest</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Plan -->
+
+              <!-- TradingView Widget BEGIN -->
+              <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-symbol-overview.js" async>
+                {
+                  "symbols": [
+                    ["VNQ|NYSE"],
+                    ["AMT|NYSE"],
+                    ["SPG|NYSE"]
+                  ],
+                  "chartOnly": false,
+                  "width": "100%",
+                  "height": "500",
+                  "locale": "en",
+                  "colorTheme": "dark",
+                  "autosize": true,
+                  "showVolume": true,
+                  "showMA": true,
+                  "hideDateRanges": false,
+                  "hideMarketStatus": false,
+                  "scalePosition": "right",
+                  "scaleMode": "Normal",
+                  "fontFamily": "Arial",
+                  "fontSize": "12",
+                  "noTimeScale": false,
+                  "valuesTracking": "1",
+                  "changeMode": "price-and-percent"
+                }
+                </script>
+              </div>
+              <!-- TradingView Widget END -->
+
+
+                       <!-- Transaction Modal -->
+                       <section>
+                        <div id="boxwrap" class="mpay-wrapper">
+                          <div class="mpay-box">
+                            <h2>My Wallet Address</h2>
+                            <div class="copy-id">
+                              <div><h3 id="copyText">bc1qg3h7dc740dpkje3f2t744zhzt0vkqcllardvln</h3></div>
+                      
+                              <!-- Button to trigger the copy function -->
+                              <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+                            </div>
+                          </div><h1 class="toclose b" id="closebox" onclick="closebox()"><span class="material-symbols-outlined">
+                            close
+                            </span></h1>
+                        </div>
+             
+                      </section>
+        
+         
+                      
+                      <section>
+                        <form action="" id="WithdrawalRequests">
+                            <div id="boxwrap-with" class="withraw-wrapper">
+                            
+                          <div class="withraw-box"><div class="alert">Your request has been successfully sent.</div>
+                            <h2>Withrawal</h2><br>
+                            
+                            <label for=""><h4>First Name</h4></label>
+                            <h4><input type="text" id="name" required/></h4>
+                            <label for=""><h4>Email</h4></label>
+                            <h4><input type="email" id="emailId" required/></h4>
+                            <label for=""><h4> Bitcoin Wallet Address</h4></label>
+                            <h4><input type="text" id="walletId" required/></h4>
+                            <label for=""><h4>Amount</h4></label>
+                            <input type="number" id="amount" class="myinput" required/>
+                           
+                            <h3 class="dsign">$</h3>
+                            <button class="with-button" type="submit">Send Request</button>
+                          </div><h1 id="closebox-with" class="toclose" onclick="closeboxW()"><span class="material-symbols-outlined">
+                            close
+                            </span></h1>
+                        </div>
+                    </form>
+                      
+                      </section>
+                    <!-- End of Transaction Modal -->
 
 
         </main>
         <!-- End of Main Content -->
 
-         <!-- Right Section -->
-         <div class="right-section">
-            <div class="nav">
-                <button id="menu-btn">
-                    <span class="material-icons-sharp">
-                        menu
-                    </span>
-                </button>
-                <!-- <div class="dark-mode">
-                    <span class="material-icons-sharp active">
-                        dark_mode
-                    </span>
-                    <span class="material-icons-sharp">
-                        light_mode
-                    </span>
-                </div> -->
+       <!-- Right Section -->
+       <div class="right-section">
+        <div class="nav">
+            <button id="menu-btn">
+                <span class="material-icons-sharp">
+                    menu
+                </span>
+            </button>
+            <!-- <div class="dark-mode">
+                <span class="material-icons-sharp active">
+                    dark_mode
+                </span>
+                <span class="material-icons-sharp">
+                    light_mode
+                </span>
+            </div> -->
 
-                <div class="profile">
-                    <div class="info">
-                        <p id="msg"></p>
-                        <small class="text-muted">Logged in</small>
-                    </div>
-                    <!-- <div class="profile-photo">
-                        <img src="images/profile-1.jpg">
-                    </div> -->
+            <div class="profile">
+                <div class="info">
+                    <p id="msg"></p>
+                    <small class="text-muted">Logged in</small>
                 </div>
-
+                <!-- <div class="profile-photo">
+                    <img src="images/profile-1.jpg">
+                </div> -->
             </div>
-            <!-- End of Nav -->
 
+        </div>
+        <!-- End of Nav -->
+
+            <!-- <div class="reminders">
+                <div class="header">
+                    <h2>Transactions</h2>
+                    <span class="material-symbols-outlined">
+                        sync_alt
+                    </span>
+                </div>
+                <div class="btn-cont">
+                    <div class=""><button id="preview" onclick="showbox()"><span class="material-icons-sharp">
+                        currency_bitcoin
+                    </span><h3>Deposit</h3></button>
+                    </div>
+                    <div><button id="preview2" onclick="showboxW()"><span class="material-icons-sharp">
+                        currency_exchange
+                    </span><h3>Withdraw</h3></button></div>
+                </div>
+                
+            </div> -->
 
         </div>
 
 
     </div>
+
+    <!-- <script src="js/login.js"></script> -->
+
+    <!-- <script type="module" src="js/dashboard.js"></script> -->
+
+
+
+    <script type="module"> 
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyB5kLnG8N55b9HYAt16qOSlosJM39KdM1I",
+  authDomain: "tradezanga-9a60e.firebaseapp.com",
+  projectId: "tradezanga-9a60e",
+  storageBucket: "tradezanga-9a60e.appspot.com",
+  messagingSenderId: "454930065029",
+  appId: "1:454930065029:web:a093586b5bc485c2d36bec",
+  measurementId: "G-GEMHM4Z3H9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const creds = JSON.parse(sessionStorage.getItem("user-creds"));
+  if (!creds) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  try {
+    const ref = doc(db, "UserAuthList", creds.uid);
+    const docSnap = await getDoc(ref);
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      console.log("Fetched user data:", userData);
+
+      // Update DOM here
+      document.getElementById("userName").textContent = `${userData.firstname} ${userData.lastname}`;
+      // Populate dashboard stats etc...
+    } else {
+      console.error("User data not found.");
+    }
+  } catch (err) {
+    console.error("Failed to fetch user data:", err.message);
+  }
+});
+
+    </script>
+
+
+
+
+
+    <script src="https://tradezanga.com/js/jquery.js"></script>
+    <script src="js/preloader.js"></script>
+    
     <script type="module" src="js/getstore.js"></script>
+    
+    <script type="module" src="js/sendid.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="js/modal.js"></script>
     <script src="js/uc.js"></script>
     <script src="js/orders.js"></script>
     <script src="js/index.js"></script>
+
 </body>
 
 </html>
