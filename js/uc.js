@@ -9,7 +9,7 @@ let SignoutBtn = document.getElementById('signoutbutton');
 
 let ActiveDeposit = document.getElementById('activedeposit');
 let Profit = document.getElementById('profit');
-let InvestmentTier = document.getElementById('investmentTier');
+let RealPlan = document.getElementById('realplan');
 let TotalPropertiesOwned = document.getElementById('totalPropertiesOwned');
 let TotalBalance = document.getElementById('totalbalance');
 
@@ -21,7 +21,7 @@ let Checkcred = () => {
     GreetHead.innerText = `Welcome! ${UserInfo.firstname}`;
     ActiveDeposit.innerText = UserInfo.active_deposit;
     Profit.innerText = UserInfo.profit;
-    InvestmentTier.innerText = UserInfo.investment_tier;
+    RealPlan.innerText = UserInfo.realplan;
     TotalPropertiesOwned.innerText = UserInfo.total_properties_owned;
     TotalBalance.innerText = UserInfo.total_balance;
   }

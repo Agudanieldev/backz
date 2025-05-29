@@ -243,22 +243,23 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="searches">
+                
+                <div class="searches">
                     <div class="status">
                         <div class="info">
-                            <h3>Investment Tier</h3>
-                            <h1><span id="investmentTier"></span></h1>
+                            <h3>Plan</h3>
+                            <h1>$<span id="realplan"></span></h1>
                         </div>
                         <div class="progresss">
                             <svg>
                                 <circle cx="38" cy="38" r="36"></circle>
                             </svg>
                             <div class="percentage">
-                                <p>-48%</p>
+                                <!-- <p>-48%</p> -->
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <div class="searches">
                     <div class="status">
                         <div class="info">
@@ -704,7 +705,7 @@ window.addEventListener("DOMContentLoaded", () => {
       document.getElementById("userName").textContent = `${user.firstname} ${user.lastname}`;
       document.getElementById("activedeposit").textContent = user.active_deposit;
       document.getElementById("profit").textContent = user.profit;
-      document.getElementById("investmentTier").textContent = user.investment_tier;
+      document.getElementById("realplan").textContent = user.realplan;
       document.getElementById("totalPropertiesOwned").textContent = user.total_properties_owned;
       document.getElementById("totalbalance").textContent = user.total_balance;
     } else {
