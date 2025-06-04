@@ -88,4 +88,22 @@
 
 }
 
+/* Hide text "Powered by Google Translate" */
+.goog-logo-link {
+  display: none !important;
+}
+
+/* Remove background color and clean up extra styles */
+.goog-te-gadget {
+  font-size: 0 !important;
+  color: transparent !important;
+  height: 24px !important;
+  overflow: hidden !important;
+}
+
+/* Optional: hide the top banner if it appears */
+.goog-te-banner-frame.skiptranslate {
+  /* display: none !important; */
+}
+
     
