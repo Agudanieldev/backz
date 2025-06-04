@@ -106,4 +106,19 @@
   /* display: none !important; */
 }
 
+#google_translate_element {
+  /* z-index: 50; */
+  margin-bottom: 30px
+}
+
+@media screen and (max-width: 768px) {
+  #google_translate_element {
+  /* z-index: 50; */
+  margin-bottom: 0px;
+  transform: translateY(-130%);
+
+
+}
+}
+
     

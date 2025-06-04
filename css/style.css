@@ -1154,27 +1154,7 @@ main .recent-orders a{
     main table tbody tr td:first-child{
         display: none;
     }
-    /* .mpay-wrapper {
-      height: 800px;
-      transform: translate(-30%, -60%);
-    }
-    .mpay-wrapper .mpay-box {
-      margin-top: 300px;
-    } */
-    /* .toclose.b {
-      margin-top: 270px;
-    }
-      
-    .withraw-wrapper {
-      height: 800px;
-      transform: translate(-30%, -60%);
-    }
-    .withraw-wrapper .withraw-box{
-      transform: translate(0%, 20%);
-    }
-    .withraw-wrapper .toclose {
-      margin-top: 80px;
-    } */
+
 
 
 }
@@ -1253,20 +1233,6 @@ main .recent-orders a{
         width: 100%;
         margin: 0;
     }
-/* 
-    .mpay-wrapper {
-        transform: translate(-20%, -80%);
-      }
-    .withraw-wrapper {
-        transform: translate(-20%, -60%);
-      }
-      .withraw-wrapper .withraw-box{
-        transform: translate(0%, 20%);
-        margin-top: 200px;
-      }
-      .withraw-wrapper .toclose {
-        margin-top: 270px;
-      } */
 
 
     .right-section{
@@ -1310,22 +1276,5 @@ main .recent-orders a{
     .right-section .nav button span{
         font-size: 2rem;
     }
-
-}
-@media screen and (max-width: 768px) {
-
-  /* .mpay-wrapper {
-    transform: translate(-14%, -60%);
-  }
-.withraw-wrapper {
-    transform: translate(-20%, -60%);
-  }
-  .withraw-wrapper .withraw-box{
-    transform: translate(0%, -30%);
-    margin-top: 200px;
-  }
-  .withraw-wrapper .toclose {
-    margin-top: 40px;
-  } */
 
 }
