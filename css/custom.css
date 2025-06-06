@@ -111,13 +111,39 @@
   margin-bottom: 30px
 }
 
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+  height: 0;
+}
+
+/* 
+iframe.skiptranslate {
+  display: none !important;
+  height: 0;
+} */
+
 @media screen and (max-width: 768px) {
   #google_translate_element {
   /* z-index: 50; */
   margin-bottom: 0px;
   transform: translateY(-130%);
 
+}
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
 
+/* iframe.skiptranslate {
+  display: none !important;
+  height: 0;
+} */
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+  height: 0;
+}
+iframe[id*=":2.container"] {
+  display: none !important;
+  height: 0;
 }
 }
 
