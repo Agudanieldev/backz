@@ -19,7 +19,9 @@
 	
 	$(window).on('load', function() {
 		handlePreloader();
-		enableMasonry();
+		if (typeof enableMasonry === 'function') {
+			enableMasonry();
+		}
 	});
 
 	

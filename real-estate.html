@@ -178,7 +178,7 @@
                 <div class="ptable-single">
                   <div class="ptable-header">
                     <div class="ptable-title">
-                      <h2>Silver – Cleveland, OH</h2>
+                      <h2>Silver â€“ Cleveland, OH</h2>
                     </div>
                     <div class="ptable-price">
                       <h2><small>$</small>500 -</h2>
@@ -189,7 +189,7 @@
                     <div class="ptable-description">
                       <ul>
                         <li>Entry-Level Investment Property</li>
-                        <li>Estimated ROI: 4% – 6% Annually</li>
+                        <li>Estimated ROI: 4% â€“ 6% Annually</li>
                         <li>Located in an Emerging Rental Market</li>
                         <li>Low Maintenance, Single-Family Unit</li>
                       </ul>
@@ -210,7 +210,7 @@
                       <span>Hot</span>
                     </div>
                     <div class="ptable-title">
-                      <h2>Gold – Austin, TX</h2>
+                      <h2>Gold â€“ Austin, TX</h2>
                     </div>
                     <div class="ptable-price">
                       <h2><small>$</small>6,000 -</h2>
@@ -221,7 +221,7 @@
                     <div class="ptable-description">
                       <ul>
                         <li>Mid-Tier Multifamily Investment</li>
-                        <li>Estimated ROI: 7% – 9% Annually</li>
+                        <li>Estimated ROI: 7% â€“ 9% Annually</li>
                         <li>High Demand Rental Zone</li>
                         <li>Appreciation-Driven Growth Area</li>
                       </ul>
@@ -239,7 +239,7 @@
                 <div class="ptable-single">
                   <div class="ptable-header">
                     <div class="ptable-title">
-                      <h2>Platinum – Seattle, WA</h2>
+                      <h2>Platinum â€“ Seattle, WA</h2>
                     </div>
                     <div class="ptable-price">
                       <h2><small>$</small>16,000 -</h2>
@@ -250,7 +250,7 @@
                     <div class="ptable-description">
                       <ul>
                         <li>High-Yield Urban Property Portfolio</li>
-                        <li>Projected ROI: 10% – 13% Annually</li>
+                        <li>Projected ROI: 10% â€“ 13% Annually</li>
                         <li>Prime Location with Tech Industry Spillover</li>
                         <li>Eligible for Short-Term Rental Income</li>
                       </ul>
@@ -268,7 +268,7 @@
                 <div class="ptable-single">
                   <div class="ptable-header">
                     <div class="ptable-title">
-                      <h2>Diamond – Manhattan, NY</h2>
+                      <h2>Diamond â€“ Manhattan, NY</h2>
                     </div>
                     <div class="ptable-price">
                       <h2><small>$</small>50,000 -</h2>
@@ -531,73 +531,12 @@
 
 
     </div>
-
-    <!-- <script src="js/login.js"></script> -->
-
-    <!-- <script type="module" src="js/dashboard.js"></script> -->
-
-
-
-    <script type="module"> 
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyB5kLnG8N55b9HYAt16qOSlosJM39KdM1I",
-  authDomain: "tradezanga-9a60e.firebaseapp.com",
-  projectId: "tradezanga-9a60e",
-  storageBucket: "tradezanga-9a60e.appspot.com",
-  messagingSenderId: "454930065029",
-  appId: "1:454930065029:web:a093586b5bc485c2d36bec",
-  measurementId: "G-GEMHM4Z3H9"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.addEventListener("DOMContentLoaded", async () => {
-  const creds = JSON.parse(sessionStorage.getItem("user-creds"));
-  if (!creds) {
-    window.location.href = "index.html";
-    return;
-  }
-
-  try {
-    const ref = doc(db, "UserAuthList", creds.uid);
-    const docSnap = await getDoc(ref);
-    if (docSnap.exists()) {
-      const userData = docSnap.data();
-      console.log("Fetched user data:", userData);
-
-      // Update DOM here
-      document.getElementById("userName").textContent = `${userData.firstname} ${userData.lastname}`;
-      // Populate dashboard stats etc...
-    } else {
-      console.error("User data not found.");
-    }
-  } catch (err) {
-    console.error("Failed to fetch user data:", err.message);
-  }
-});
-
-    </script>
-
-
-
-
-
     <script src="https://tradezanga.com/js/jquery.js"></script>
     <script src="js/preloader.js"></script>
-    
-    <script type="module" src="js/getstore.js"></script>
-    
+
+    <script type="module" src="js/session.js"></script>
     <script type="module" src="js/sendid.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
     <script src="js/modal.js"></script>
-    <script src="js/uc.js"></script>
-    <script src="js/orders.js"></script>
     <script src="js/index.js"></script>
 
     <!--Start of Tawk.to Script-->

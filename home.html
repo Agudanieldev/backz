@@ -4,759 +4,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-      <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;0,1000;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
 
-       
-    
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/charts.css">
-    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/app.css">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    
-    <title>Dashboard</title>
+
+    <title>My Dashboard</title>
 </head>
 
 <body>
-    
-
-     <!-- preloader -->
-        <div class="loader-wrap">
-            <div class="preloader">
-                <div class="preloader-close">x</div>
-                <div id="handle-preloader" class="handle-preloader">
-                    <div class="animation-preloader">
-                        <div class="spinner"></div>
-                        <div class="txt-loading">
-                            <span data-text-preloader="T" class="letters-loading">
-                                T
-                            </span>
-                            <span data-text-preloader="r" class="letters-loading">
-                                r
-                            </span>
-                            <span data-text-preloader="a" class="letters-loading">
-                                a
-                            </span>
-                            <span data-text-preloader="d" class="letters-loading">
-                                d
-                            </span>
-                            <span data-text-preloader="e" class="letters-loading">
-                                e
-                            </span>
-                            <span data-text-preloader="z" class="letters-loading">
-                                z
-                            </span>
-                            <span data-text-preloader="a" class="letters-loading">
-                                a
-                            </span>
-                            <span data-text-preloader="n" class="letters-loading">
-                                n
-                            </span>
-                            <span data-text-preloader="g" class="letters-loading">
-                                g
-                            </span>
-                            <span data-text-preloader="a" class="letters-loading">
-                                a
-                            </span> <br> <span data-text-preloader="X" class="letters-loading">X</span> <br>
-                            <span data-text-preloader="i" class="letters-loading">
-                                i
-                            </span>
-                            <span data-text-preloader="n" class="letters-loading">
-                                n
-                            </span>
-                            <span data-text-preloader="f" class="letters-loading">
-                                f
-                            </span>
-                            <span data-text-preloader="i" class="letters-loading">
-                                i
-                            </span>
-                            <span data-text-preloader="n" class="letters-loading">
-                                n
-                            </span>
-                            <span data-text-preloader="i" class="letters-loading">
-                                i
-                            </span>
-                            <span data-text-preloader="t" class="letters-loading">
-                                t
-                            </span>
-                            <span data-text-preloader="e" class="letters-loading">
-                                e
-                            </span>
-                            <span data-text-preloader="s" class="letters-loading">
-                                s
-                            </span>
-                            <span data-text-preloader="h" class="letters-loading">
-                                h
-                            </span>
-                            </span>
-                            <span data-text-preloader="a" class="letters-loading">
-                                a
-                            </span>
-                            <span data-text-preloader="r" class="letters-loading">
-                                r
-                            </span>
-                            </span>
-                            <span data-text-preloader="e" class="letters-loading">
-                                e
-                            </span>
-                            <span data-text-preloader="s" class="letters-loading">
-                                s
-                            </span>
-                        </div>
-                    </div>  
-                </div>
-            </div>
-        </div>
-        <!-- preloader end -->
-
-          <!-- Modal -->
-    <div id="modal">
-      <div id="modal-content">
-        <!-- <span id="modal-close">&times;</span> -->
-        <span id="modal-close" class="material-icons-sharp notranslate">
-                        close
-                    </span>
-        <div id="modal-message">Placeholder</div>
-      </div>
-    </div>
-    
-
-        <script type="text/javascript">
-        function googleTranslateElementInit() {
-            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-        }
-        </script>
-
-        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        <script type="text/javascript" src="./js/googletranscookie.js"></script>
-
     <div class="container">
-        <!-- Sidebar Section -->
+        <!-- Sidebar -->
         <aside>
             <div class="toggle">
                 <div class="logo">
-                    <img src="images/mini_logo.png">
+                    <img src="images/mini_logo.png" alt="Tradezanga">
                     <h2 class="notranslate">Trade<span class="success">Zanga</span></h2>
                 </div>
                 <div class="close" id="close-btn">
-                    <span class="material-icons-sharp notranslate">
-                        close
-                    </span>
+                    <span class="material-icons-sharp notranslate">close</span>
                 </div>
             </div>
 
             <div class="sidebar">
-                <a href="Home.html" class="active">
-                    <span class="material-icons-sharp notranslate">
-                        dashboard
-                    </span>
+                <a href="home.html" class="active">
+                    <span class="material-icons-sharp notranslate">dashboard</span>
                     <h3>Dashboard</h3>
                 </a>
                 <a href="real-estate.html">
-                    <span class="material-icons-sharp notranslate">
-                        money
-                    </span>
+                    <span class="material-icons-sharp notranslate">money</span>
                     <h3>Investment Packages</h3>
                 </a>
-                <!-- <a href="#">
-                    <span class="material-icons-sharp notranslate">
-                        person
-                    </span>
-                    <h3>Profile</h3>
-                </a> -->
-
                 <a href="forex.html">
-                    <span class="material-icons-sharp notranslate">
-                        candlestick_chart
-                    </span>
+                    <span class="material-icons-sharp notranslate">candlestick_chart</span>
                     <h3>Forex Tools</h3>
                 </a>
                 <a href="crypto.html">
-                    <span class="material-icons-sharp notranslate">
-                        monetization_on
-                    </span>
+                    <span class="material-icons-sharp notranslate">monetization_on</span>
                     <h3>Crypto Tools</h3>
                 </a>
                 <a href="stock.html">
-                    <span class="material-icons-sharp notranslate">
-                        query_stats
-                    </span>
+                    <span class="material-icons-sharp notranslate">query_stats</span>
                     <h3>Stock Tools</h3>
                 </a>
-                
-                
-                <a id="signoutbutton">
-                    <span class="material-icons-sharp notranslate">
-                        logout
-                    </span>
+                <a href="admin.html" data-admin-link style="display: none;">
+                    <span class="material-icons-sharp notranslate">admin_panel_settings</span>
+                    <h3>Admin Panel</h3>
+                </a>
+                <a href="#" id="signoutbutton">
+                    <span class="material-icons-sharp notranslate">logout</span>
                     <h3>Logout</h3>
                 </a>
             </div>
         </aside>
-        <!-- End of Sidebar Section -->
 
-        <!-- Main Content -->
+        <!-- Main content -->
         <main>
-          <div id="google_translate_element" style="background-color: #181a1e; "></div>
-            <h1 id="greet"></h1><br>
-            <h2>Dashboard</h2>
-            <!-- Analyses -->
-            <div class="analyse">
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Active Deposit</h3>
-                            <h1>$<span id="activedeposit"></span></h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <!-- <p>+81%</p> -->
-                            </div>
-                        </div>
-                    </div>
+            <h1 id="greet">Welcome back</h1>
+            <p class="page-subtitle">Here is a quick overview of your account.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Active Deposit</h3>
+                    <h1>$<span id="activedeposit">0.00</span></h1>
+                    <p class="stat-sub">Currently working for you</p>
                 </div>
-                <div class="visits">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Profit</h3>
-                            <h1>$<span id="profit"></span></h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <!-- <circle cx="38" cy="38" r="36"></circle> -->
-                            </svg>
-                            <div class="percentage">
-                                <!-- <p>-48%</p> -->
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <h3>Profit</h3>
+                    <h1>$<span id="profit">0.00</span></h1>
+                    <p class="stat-sub">Total earned profit</p>
                 </div>
-                <div class="sales">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Total Properties Owned</h3>
-                            <h1>+<span id="totalPropertiesOwned"></span></h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <!-- <p>+81%</p> -->
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <h3>Total Balance</h3>
+                    <h1>$<span id="totalbalance">0.00</span></h1>
+                    <p class="stat-sub">Available account balance</p>
                 </div>
-                
-                <div class="searches">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Investment Plan</h3>
-                            <h1><span id="realplan"></span></h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <!-- <p>-48%</p> -->
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <h3>Investment Plan</h3>
+                    <h1 id="realplan">None</h1>
+                    <p class="stat-sub">Your current package</p>
                 </div>
-                <div class="searches">
-                    <div class="status">
-                        <div class="info">
-                            <h3>Total Balance</h3>
-                            <h1>$<span id="totalbalance"></span></h1>
-                        </div>
-                        <div class="progresss">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="percentage">
-                                <!-- <p>-48%</p> -->
-                            </div>
-                        </div>
-                    </div>
+                <div class="stat-card">
+                    <h3>Properties Owned</h3>
+                    <h1>+<span id="totalPropertiesOwned">0</span></h1>
+                    <p class="stat-sub">Assets in your portfolio</p>
                 </div>
-                
-                
             </div>
-            <!-- <div class="analyse">
-                
-                
-                
-                
-                
-            </div> -->
-            <!-- End of Analyses -->
 
-            
-
-            <!-- Transaction Modal -->
-            <section>
-                <div id="boxwrap" class="mpay-wrapper">
-                  <div class="mpay-box">
-                    <h3>My Bitcoin Wallet Address</h3>
-                    <div class="copy-id">
-                      <p  id="copyText">bc1q6hc3la940cpeqt9425gsk2c855rah7qjp2kf8c</p>
-                    </div >
-                    <div style="width: 100%; display: flex; justify-content: end;">
-                      <button id="copyButton" onclick="copyToClipboard()">Copy</button>
+            <div class="grid-2">
+                <section class="panel">
+                    <div class="panel-head">
+                        <h2>Request a deposit</h2>
                     </div>
-                      
-                  </div>
-                  
-                  <h1 class="toclose b" id="closebox" onclick="closebox()"><span class="material-symbols-outlined">
-                    close
-                    </span></h1>
-                </div>
-     
-              </section>
-
- 
-              
-              <section>
-                <form action="" id="WithdrawalRequests">
-                    <div id="boxwrap-with" class="withraw-wrapper">
-                    
-                  <div class="withraw-box">
-                    
-                    <h2>Withrawal</h2><br>
-                    
-                    <!-- <label for=""><h4>First Name</h4></label> -->
-                    <h4><input type="text" id="name" placeholder="First Name" required/></h4>
-                    <!-- <label for=""><h4>Email</h4></label> -->
-                    <h4><input type="email" id="emailId" placeholder="Email" required/></h4>
-                    <!-- <label for=""><h4> Bitcoin Wallet Address</h4></label> -->
-                    <h4><input type="text" id="walletId" placeholder="Bitcoin Wallet Address" required/></h4>
-                    <!-- <label for=""><h4>Amount</h4></label> -->
-                    <input type="number" id="amount" class="myinput" required/>
-                   
-                    <h3 class="dsign">$</h3>
-                    <div class="alert">
-                      Your request has been sent successfully.
+                    <p class="muted">
+                        Send your deposit to the Bitcoin address below, then submit the amount you sent.
+                        An admin will review and approve it.
+                    </p>
+                    <div class="wallet-box">
+                        <code id="copyText">bc1q6hc3la940cpeqt9425gsk2c855rah7qjp2kf8c</code>
+                        <button type="button" class="btn btn-sm btn-ghost" id="copyButton" onclick="copyToClipboard()">Copy</button>
                     </div>
-                    <div style="width: 100%; display: flex; justify-content: end;">
-                      <button class="with-button" type="submit">Send </button>
-                    </div>
-                    
-                  </div><h1 id="closebox-with" class="toclose" onclick="closeboxW()">
-                    <span class="material-symbols-outlined">
-                    close
-                    </span></h1>
-                </div>
-            </form>
-              
-              </section>
-            <!-- End of Transaction Modal -->
-             <!-- Charts -->
-            <div>
-               <!-- Existing Analyse Section -->
-
-  
-
-            <!-- Stock Line Chart -->
-            <div class="chart-container">
-              <h2>Stock Performance</h2>
-              <canvas id="stockChart" width="800" height="300"></canvas>
-            </div>
-            </div>
-            <!-- End Charts -->
-            
-            <!-- Plans -->
-            <!-- <h2 class="demo-title">Investment Plans<hr></h2>
-              <div class="pricing-table">
-                <div class="ptable-item">
-                  <div class="ptable-single">
-                    <div class="ptable-header">
-                      <div class="ptable-title">
-                        <h2>Silver</h2>
-                      </div>
-                      <div class="ptable-price">
-                        <h2><small>$</small>500 -</h2>
-                        <h2><small>$</small> 5,000</h2>
-                      </div>
-                    </div>
-                    <div class="ptable-body">
-                      <div class="ptable-description">
-                        <ul>
-                          <li>Basic Market Analysis Tools</li>
-                          <li>100% Guaranteed Profit (Min 42hrs)</li>
-                          <li>Access to Educational Materials</li>
-                          <li>Essential Trading Platform Features</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="ptable-footer">
-                      <div class="ptable-action">
-                        <a id="preview" onclick="showbox()">Deposit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="ptable-item featured-item">
-                  <div class="ptable-single">
-                    <div class="ptable-header">
-                      <div class="ptable-status">
-                        <span>Hot</span>
-                      </div>
-                      <div class="ptable-title">
-                        <h2>Gold</h2>
-                      </div>
-                      <div class="ptable-price">
-                        <h2><small>$</small>6,000 -</h2>
-                        <h2><small>$</small> 15,000</h2>
-                      </div>
-                    </div>
-                    <div class="ptable-body">
-                      <div class="ptable-description">
-                        <ul>
-                          <li>Advance Market Analysis Tools</li>
-                          <li>300% Guaranteed Profit (Min 72hrs)</li>
-                          <li>Exclusive Trading Education</li>
-                          <li>Advance Trading Platform Features</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="ptable-footer">
-                      <div class="ptable-action">
-                        <a id="preview" onclick="showbox()">Deposit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="ptable-item">
-                  <div class="ptable-single">
-                    <div class="ptable-header">
-                      <div class="ptable-title">
-                        <h2>Platinum</h2>
-                      </div>
-                      <div class="ptable-price">
-                        <h2><small>$</small>16,000 -</h2>
-                  <h2><small>$</small> 50,000</h2>
-                </div>
-              </div>
-              <div class="ptable-body">
-                <div class="ptable-description">
-                  <ul>
-                    <li>Advance Market Analysis Tools</li>
-                    <li>500% Guaranteed Profit (Min 120hrs)</li>
-                    <li>Exclusive Trading Seminars</li>
-                    <li>Fully Customizable Trading Platform</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="ptable-footer">
-                      <div class="ptable-action">
-                        <a id="preview" onclick="showbox()">Deposit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="ptable-item">
-                  <div class="ptable-single">
-                    <div class="ptable-header">
-                      <div class="ptable-title">
-                        <h2><b>Huge Volume</b></h2><br><br><br><br><br>
-                      </div>
-                      <div class="ptable-price">
-                      </div>
-                    </div>
-                    <div class="ptable-body">
-                      <div class="ptable-description">
-                        <ul>
-                          <li>Advance Market Analysis Tools</li>
-                          <li>500% Guaranteed Profit (Min 120hrs)</li>
-                          <li>Exclusive Trading Seminars</li>
-                          <li>Fully Customizable Trading Platform</li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="ptable-footer">
-                      <div class="ptable-action">
-                        <a id="preview" onclick="showbox()">Deposit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> -->
-            <!-- End Plan -->
-            
-            
-            
-
-              <!-- TradingView Widget BEGIN -->
-              <div class="td">
-                <div class="tradingview-widget-container">
-                  <div class="tradingview-widget-container__widget"></div>
-                  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
-                  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-forex-cross-rates.js" async>
-                  {
-                  "width": "100%",
-                  "height": "100%",
-                  "currencies": [
-                    "EUR",
-                    "USD",
-                    "JPY",
-                    "GBP",
-                    "CHF",
-                    "AUD",
-                    "CAD",
-                    "NZD"
-                  ],
-                  "isTransparent": false,
-                  "colorTheme": "dark",
-                  "locale": "en"
-                }
-                  </script>
-                </div></div>
-                <!-- TradingView Widget END -->
-
-                       <!-- Transaction Modal -->
-                       <section>
-                        <div id="boxwrap" class="mpay-wrapper">
-                          <div class="mpay-box">
-                            <h2>My Wallet Address</h2>
-                            <div class="copy-id">
-                              <div><h3 id="copyText">bc1q6hc3la940cpeqt9425gsk2c855rah7qjp2kf8c</h3></div>
-                      
-                              <!-- Button to trigger the copy function -->
-                              <button id="copyButton" onclick="copyToClipboard()">Copy</button>
-                            </div>
-                          </div><h1 class="toclose b" id="closebox" onclick="closebox()"><span class="material-symbols-outlined">
-                            close
-                            </span></h1>
+                    <form id="depositForm">
+                        <div class="field">
+                            <label for="depositAmount">Amount (USD)</label>
+                            <input id="depositAmount" type="number" min="1" step="0.01" placeholder="500" required>
                         </div>
-             
-                      </section>
-        
-         
-                      
-                      <section>
-                        <form action="" id="WithdrawalRequests">
-                            <div id="boxwrap-with" class="withraw-wrapper">
-                            
-                          <div class="withraw-box"><div class="alert">Your request has been successfully sent.</div>
-                            <h2>Withrawal</h2><br>
-                            
-                            <label for=""><h4>First Name</h4></label>
-                            <h4><input type="text" id="name" required/></h4>
-                            <label for=""><h4>Email</h4></label>
-                            <h4><input type="email" id="emailId" required/></h4>
-                            <label for=""><h4> Bitcoin Wallet Address</h4></label>
-                            <h4><input type="text" id="walletId" required/></h4>
-                            <label for=""><h4>Amount</h4></label>
-                            <input type="number" id="amount" class="myinput" required/>
-                           
-                            <h3 class="dsign">$</h3>
-                            <button class="with-button" type="submit">Send Request</button>
-                          </div><h1 id="closebox-with" class="toclose" onclick="closeboxW()"><span class="material-symbols-outlined">
-                            close
-                            </span></h1>
-                        </div>
+                        <button class="btn btn-primary" type="submit">Send deposit request</button>
                     </form>
-                      
-                      </section>
-                    <!-- End of Transaction Modal -->
+                    <div id="depositNotice" class="notice"></div>
+                </section>
 
+                <section class="panel">
+                    <div class="panel-head">
+                        <h2>Request a withdrawal</h2>
+                    </div>
+                    <p class="muted">
+                        Withdrawals are reviewed by an admin before they are paid out to your wallet.
+                    </p>
+                    <form id="withdrawForm">
+                        <div class="field">
+                            <label for="withdrawAmount">Amount (USD)</label>
+                            <input id="withdrawAmount" type="number" min="1" step="0.01" placeholder="200" required>
+                        </div>
+                        <div class="field">
+                            <label for="withdrawWallet">Bitcoin wallet address</label>
+                            <input id="withdrawWallet" type="text" placeholder="bc1..." required>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Send withdrawal request</button>
+                    </form>
+                    <div id="withdrawNotice" class="notice"></div>
+                </section>
+            </div>
 
+            <section class="panel">
+                <div class="panel-head">
+                    <h2>My requests</h2>
+                    <button type="button" class="btn btn-sm btn-ghost" id="refreshTransactions">Refresh</button>
+                </div>
+                <div id="transactionsNotice" class="notice"></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Wallet</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionsBody">
+                            <tr>
+                                <td colspan="5" class="empty">Loading your requests...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <p class="muted" style="margin-top: 1.5rem;">
+                Balances shown on this dashboard are updated when an admin approves a request.
+            </p>
         </main>
-        <!-- End of Main Content -->
 
-       <!-- Right Section -->
-       <div class="right-section">
-        <div class="nav">
-            <button id="menu-btn">
-                <span class="material-icons-sharp notranslate">
-                    menu
-                </span>
-            </button>
-            <!-- <div class="dark-mode">
-                <span class="material-icons-sharp active">
-                    dark_mode
-                </span>
-                <span class="material-icons-sharp notranslate">
-                    light_mode
-                </span>
-            </div> -->
-
-            <div class="profile">
-                <div class="info">
-                    <p id="msg"></p>
-                    <small class="text-muted">Logged in</small>
+        <!-- Right section -->
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn" type="button">
+                    <span class="material-icons-sharp notranslate">menu</span>
+                </button>
+                <div class="profile">
+                    <div class="info">
+                        <p id="msg">Loading...</p>
+                        <small class="text-muted" id="userRole">Investor</small>
+                    </div>
                 </div>
-                <!-- <div class="profile-photo">
-                    <img src="images/profile-1.jpg">
-                </div> -->
             </div>
-
         </div>
-        <!-- End of Nav -->
-
-            <div class="reminders">
-                <!-- <div class="header">
-                    <h2>Transactions</h2>
-                    <span class="material-symbols-outlined">
-                        sync_alt
-                    </span>
-                </div> -->
-                <div class="btn-cont">
-                    <!-- <div class=""><button id="preview" onclick="showbox()"><span class="material-icons-sharp notranslate">
-                        currency_bitcoin
-                    </span><h3>Deposit</h3></button>
-                    </div> -->
-                    <!-- <div><button id="preview2" onclick="showboxW()"><span class="material-icons-sharp notranslate">
-                        currency_exchange
-                    </span><h3>Withdraw</h3></button></div> -->
-                </div>
-                
-            </div>
-
-        </div>
-
-
     </div>
 
-    <!-- <script src="js/login.js"></script> -->
-
-    <!-- <script type="module" src="js/dashboard.js"></script> -->
-
-
-
-    <!-- <script type="module"> 
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyB5kLnG8N55b9HYAt16qOSlosJM39KdM1I",
-  authDomain: "tradezanga-9a60e.firebaseapp.com",
-  projectId: "tradezanga-9a60e",
-  storageBucket: "tradezanga-9a60e.appspot.com",
-  messagingSenderId: "454930065029",
-  appId: "1:454930065029:web:a093586b5bc485c2d36bec",
-  measurementId: "G-GEMHM4Z3H9"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.addEventListener("DOMContentLoaded", async () => {
-  const creds = JSON.parse(sessionStorage.getItem("user-creds"));
-  if (!creds) {
-    window.location.href = "index.html";
-    return;
-  }
-
-  try {
-    const ref = doc(db, "UserAuthList", creds.uid);
-    const docSnap = await getDoc(ref);
-    if (docSnap.exists()) {
-      const userData = docSnap.data();
-      console.log("Fetched user data:", userData);
-
-
-      document.getElementById("userName").textContent = `${userData.firstname} ${userData.lastname}`;
- 
-    } else {
-      console.error("User data not found.");
-    }
-  } catch (err) {
-    console.error("Failed to fetch user data:", err.message);
-  }
-});
-
-    </script> -->
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-// Firebase config
-const firebaseConfig = {
-  apiKey: "AIzaSyB5kLnG8N55b9HYAt16qOSlosJM39KdM1I",
-  authDomain: "tradezanga-9a60e.firebaseapp.com",
-  projectId: "tradezanga-9a60e",
-  storageBucket: "tradezanga-9a60e.appspot.com",
-  messagingSenderId: "454930065029",
-  appId: "1:454930065029:web:a093586b5bc485c2d36bec",
-  measurementId: "G-GEMHM4Z3H9"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-// Wait for DOM and session data
-window.addEventListener("DOMContentLoaded", () => {
-  const creds = JSON.parse(sessionStorage.getItem("user-creds"));
-  if (!creds) {
-    window.location.href = "index.html";
-    return;
-  }
-
-  const ref = doc(db, "UserAuthList", creds.uid);
-
-  onSnapshot(ref, (docSnap) => {
-    if (docSnap.exists()) {
-      const user = docSnap.data();
-
-      // Update DOM elements
-      document.getElementById("userName").textContent = `${user.firstname} ${user.lastname}`;
-      document.getElementById("activedeposit").textContent = user.active_deposit;
-      document.getElementById("profit").textContent = user.profit;
-      document.getElementById("realplan").textContent = user.realplan;
-      document.getElementById("totalPropertiesOwned").textContent = user.total_properties_owned;
-      document.getElementById("totalbalance").textContent = user.total_balance;
-    } else {
-      console.error("User document not found.");
-    }
-  }, (err) => {
-    console.error("Realtime listener error:", err);
-  });
-});
-</script>
-
-
-
-
-    <script src="https://tradezanga.com/js/jquery.js"></script>
-    <script src="js/preloader.js"></script>
-    
-    <script type="module" src="js/getstore.js"></script>
-    
-    <script type="module" src="js/sendid.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <script src="js/charts.js"></script>
-    <script src="js/modal.js"></script>
-    <script src="js/uc.js"></script>
-    <script src="js/orders.js"></script>
     <script src="js/index.js"></script>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/683623d24a34301911ec75e0/1is9nnrs7';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-    </script>
-    <!--End of Tawk.to Script-->
-
+    <script type="module" src="js/user-dashboard.js"></script>
 </body>
 
 </html>

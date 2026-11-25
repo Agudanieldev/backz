@@ -1,60 +1,40 @@
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyB5kLnG8N55b9HYAt16qOSlosJM39KdM1I",
-  authDomain: "tradezanga-9a60e.firebaseapp.com",
-  projectId: "tradezanga-9a60e",
-  storageBucket: "tradezanga-9a60e.appspot.com",
-  messagingSenderId: "454930065029",
-  appId: "1:454930065029:web:a093586b5bc485c2d36bec",
-  measurementId: "G-GEMHM4Z3H9"
-};
+import { supabase } from "./supabase.js";
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const forms = document.querySelectorAll("#WithdrawalRequests");
 
-// Get a reference to the Firestore database
-const db = firebase.firestore();
+forms.forEach((form) => {
+  const alertBox = form.querySelector(".alert");
 
-document.getElementById("WithdrawalRequests").addEventListener("submit", submitForm);
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-function submitForm(e) {
-  e.preventDefault();
+    const amount = Number(form.querySelector("#amount")?.value);
+    const wallet = form.querySelector("#walletId")?.value.trim();
 
-  var name = getElementVal("name");
-  var walletId = getElementVal("walletId");
-  var amount = getElementVal("amount");
-  var emailId = getElementVal("emailId");
+    if (!(amount > 0) || !wallet) {
+      if (alertBox) {
+        alertBox.textContent = "Enter a valid amount and wallet address.";
+        alertBox.style.display = "block";
+      }
+      return;
+    }
 
-  saveMessages(name, emailId, walletId, amount);
+    const { error } = await supabase.from("transactions").insert({
+      type: "withdraw",
+      amount,
+      wallet_address: wallet,
+    });
 
-  //   Enable alert
-  document.querySelector(".alert").style.display = "block";
+    if (alertBox) {
+      alertBox.textContent = error
+        ? error.message
+        : "Your withdrawal request has been sent successfully.";
+      alertBox.style.display = "block";
+      setTimeout(() => {
+        alertBox.style.display = "none";
+      }, 6000);
+    }
 
-  //   Remove the alert
-  setTimeout(() => {
-    document.querySelector(".alert").style.display = "none";
-  }, 5000);
-
-  //   Reset the form
-  document.getElementById("WithdrawalRequests").reset();
-}
-
-const saveMessages = (name, emailId, walletId, amount) => {
-  // Add a document to the "WithdrawalRequests" collection
-  db.collection("WithdrawalRequests").add({
-    name: name,
-    email: emailId,
-    Wallet: walletId,
-    amount: amount,
-  })
-  .then((docRef) => {
-    console.log("Document written with ID: ", docRef.id);
-  })
-  .catch((error) => {
-    console.error("Error adding document: ", error);
+    if (!error) form.reset();
   });
-};
-
-const getElementVal = (id) => {
-  return document.getElementById(id).value;
-};
+});

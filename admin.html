@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900;1,1000&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside>
+            <div class="toggle">
+                <div class="logo">
+                    <img src="images/mini_logo.png" alt="Tradezanga">
+                    <h2 class="notranslate">Trade<span class="success">Zanga</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp notranslate">close</span>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <a href="admin.html" class="active">
+                    <span class="material-icons-sharp notranslate">admin_panel_settings</span>
+                    <h3>Overview</h3>
+                </a>
+                <a href="#requestsPanel">
+                    <span class="material-icons-sharp notranslate">pending_actions</span>
+                    <h3>Requests</h3>
+                </a>
+                <a href="#usersPanel">
+                    <span class="material-icons-sharp notranslate">group</span>
+                    <h3>Users</h3>
+                </a>
+                <a href="#messagesPanel">
+                    <span class="material-icons-sharp notranslate">mail</span>
+                    <h3>Messages</h3>
+                </a>
+                <a href="home.html">
+                    <span class="material-icons-sharp notranslate">dashboard</span>
+                    <h3>My Dashboard</h3>
+                </a>
+                <a href="#" id="signoutbutton">
+                    <span class="material-icons-sharp notranslate">logout</span>
+                    <h3>Logout</h3>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main>
+            <h1>Admin Dashboard</h1>
+            <p class="page-subtitle">Review deposit and withdrawal requests, and keep an eye on your users.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <h1 id="totalUsers">0</h1>
+                    <p class="stat-sub">Registered accounts</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Pending Requests</h3>
+                    <h1 id="pendingRequests">0</h1>
+                    <p class="stat-sub">Waiting for your review</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Approved Deposits</h3>
+                    <h1 id="approvedDeposits">$0.00</h1>
+                    <p class="stat-sub">Total approved deposit value</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Held Balance</h3>
+                    <h1 id="totalHeld">$0.00</h1>
+                    <p class="stat-sub">Across all user accounts</p>
+                </div>
+            </div>
+
+            <section class="panel" id="requestsPanel">
+                <div class="panel-head">
+                    <h2>Pending requests</h2>
+                    <button type="button" class="btn btn-sm btn-ghost" id="refreshAdmin">Refresh</button>
+                </div>
+                <div id="adminNotice" class="notice"></div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>User</th>
+                                <th>Type</th>
+                                <th>Amount</th>
+                                <th>Wallet</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsBody">
+                            <tr>
+                                <td colspan="6" class="empty">Loading requests...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="panel" id="usersPanel">
+                <div class="panel-head">
+                    <h2>Users</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Balance</th>
+                                <th>Deposit</th>
+                                <th>Profit</th>
+                                <th>Joined</th>
+                            </tr>
+                        </thead>
+                        <tbody id="usersBody">
+                            <tr>
+                                <td colspan="7" class="empty">Loading users...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="panel" id="messagesPanel">
+                <div class="panel-head">
+                    <h2>Contact messages</h2>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Subject</th>
+                                <th>Message</th>
+                            </tr>
+                        </thead>
+                        <tbody id="messagesBody">
+                            <tr>
+                                <td colspan="6" class="empty">Loading messages...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+
+        <!-- Right section -->
+        <div class="right-section">
+            <div class="nav">
+                <button id="menu-btn" type="button">
+                    <span class="material-icons-sharp notranslate">menu</span>
+                </button>
+                <div class="profile">
+                    <div class="info">
+                        <p id="adminName">Admin</p>
+                        <small class="text-muted" id="msg">Loading...</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+    <script type="module" src="js/admin-dashboard.js"></script>
+</body>
+
+</html>

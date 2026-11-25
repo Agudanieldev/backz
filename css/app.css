@@ -1,0 +1,319 @@
+/* Lightweight dashboard additions for the Supabase-backed pages. */
+
+main {
+  padding-bottom: 2rem;
+  min-width: 0;
+}
+
+.page-subtitle {
+  margin: 0.35rem 0 0 0.15rem;
+  color: var(--color-info-dark);
+  font-size: 0.82rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.stat-card {
+  background-color: var(--color-white);
+  padding: 1.35rem;
+  border-radius: 1.2rem;
+  box-shadow: var(--box-shadow);
+}
+
+.stat-card h3 {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-info-dark);
+}
+
+.stat-card h1 {
+  margin-top: 0.45rem;
+  font-size: 1.55rem;
+  color: var(--color-dark);
+  word-break: break-word;
+}
+
+.stat-card .stat-sub {
+  margin-top: 0.2rem;
+  font-size: 0.72rem;
+  color: var(--color-info-dark);
+}
+
+.panel {
+  background-color: var(--color-white);
+  padding: 1.4rem;
+  border-radius: 1.2rem;
+  box-shadow: var(--box-shadow);
+  margin-top: 1.3rem;
+  min-width: 0;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.9rem;
+}
+
+.panel-head h2 {
+  font-size: 1.05rem;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem;
+  margin-top: 1.3rem;
+}
+
+.grid-2 .panel {
+  margin-top: 0;
+}
+
+.field {
+  margin-bottom: 0.85rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.76rem;
+  color: var(--color-info-dark);
+}
+
+.field input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid var(--color-light);
+  border-radius: 0.6rem;
+  background-color: var(--color-background);
+  color: var(--color-dark);
+  font-family: inherit;
+  font-size: 0.88rem;
+}
+
+.field input:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.62rem 1rem;
+  border: 0;
+  border-radius: 0.6rem;
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.btn:hover {
+  opacity: 0.85;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: var(--color-danger);
+  color: #fff;
+}
+
+.btn-ghost {
+  background-color: transparent;
+  border: 1px solid var(--color-light);
+  color: var(--color-dark);
+}
+
+.btn-sm {
+  padding: 0.4rem 0.7rem;
+  border-radius: 0.45rem;
+  font-size: 0.7rem;
+}
+
+.wallet-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 1rem;
+  padding: 0.65rem 0.8rem;
+  border: 1px dashed var(--color-light);
+  border-radius: 0.6rem;
+  background-color: var(--color-background);
+  overflow: hidden;
+}
+
+.wallet-box code {
+  flex: 1;
+  font-size: 0.72rem;
+  color: var(--color-dark-variant);
+  word-break: break-all;
+  user-select: all;
+}
+
+.notice {
+  display: none;
+  margin-top: 0.9rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0.5rem;
+  font-size: 0.78rem;
+}
+
+.notice.success {
+  border: 1px solid rgba(38, 186, 94, 0.35);
+  background-color: rgba(38, 186, 94, 0.14);
+  color: #3ddc7c;
+}
+
+.notice.error {
+  border: 1px solid rgba(255, 0, 96, 0.3);
+  background-color: rgba(255, 0, 96, 0.12);
+  color: #ff6b9d;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.22rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.badge.pending {
+  background-color: rgba(247, 208, 96, 0.16);
+  color: #f7d060;
+}
+
+.badge.approved {
+  background-color: rgba(38, 186, 94, 0.16);
+  color: #3ddc7c;
+}
+
+.badge.rejected {
+  background-color: rgba(255, 0, 96, 0.14);
+  color: #ff6b9d;
+}
+
+.badge.neutral {
+  background-color: var(--color-light);
+  color: var(--color-dark-variant);
+}
+
+.table-wrap {
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.panel table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.panel thead th {
+  padding: 0.7rem 0.5rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-info-dark);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.panel tbody td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid var(--color-light);
+  color: var(--color-dark-variant);
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+.panel tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.wallet-cell {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.message-cell {
+  max-width: 340px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.empty {
+  padding: 1.5rem 0 !important;
+  color: var(--color-info-dark);
+  text-align: center;
+}
+
+.muted {
+  color: var(--color-info-dark);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.panel > .muted {
+  margin-bottom: 0.9rem;
+}
+
+@media screen and (max-width: 1200px) {
+  /* The base stylesheet hides the first/last table columns on smaller
+     screens; these tables need the date and action columns to remain. */
+  main .panel table thead tr th:first-child,
+  main .panel table thead tr th:last-child,
+  main .panel table tbody tr td:first-child,
+  main .panel table tbody tr td:last-child {
+    display: table-cell;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+}
