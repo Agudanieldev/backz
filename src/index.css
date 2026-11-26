@@ -1,0 +1,268 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand */
+  --color-primary: #26ba5e;
+  --color-primary-ink: #0f7c3f;
+  --color-primary-deep: #1a8342;
+  --color-primary-foreground: #ffffff;
+  --color-primary-hover: #1a8342;
+  --color-primary-active: #18793d;
+  --color-primary-muted: #e9f9ef;
+  --color-primary-subtle: #d5f3e1;
+
+  /* Actions */
+  --color-action: #1a8342;
+  --color-action-hover: #18793d;
+  --color-action-active: #0f5c2d;
+  --color-action-foreground: #ffffff;
+
+  /* Call to action */
+  --color-cta: #121316;
+  --color-cta-hover: #1e3a2f;
+  --color-cta-foreground: #ffffff;
+
+  /* Text */
+  --color-text-primary: #121316;
+  --color-text-secondary: #404040;
+  --color-text-tertiary: #737373;
+  --color-text-muted: #a3a3a3;
+  --color-text-soft: #525252;
+  --color-text-inverse: #ffffff;
+
+  /* Surfaces */
+  --color-canvas: #fbfbfa;
+  --color-canvas-soft: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-surface-raised: #fcfcfb;
+  --color-surface-subtle: #f5f5f3;
+  --color-surface-muted: #f1f1ed;
+  --color-surface-ink: #16171b;
+  --color-field: #f6f6f4;
+  --color-notice: #faf9f7;
+
+  /* Borders & structure */
+  --color-border: #e5e7eb;
+  --color-border-soft: #efefea;
+  --color-border-card: #ebebe8;
+  --color-border-faint: #f4f4f0;
+  --color-border-strong: #e8e8e3;
+  --color-track: #eaeaea;
+
+  /* Auth screens mirror the marketing site (frontz) typography */
+  --font-auth: "Mulish", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  --font-auth-display: "Syne", "Plus Jakarta Sans", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --color-primary: #3ddc7c;
+  --color-primary-ink: #8ee9ae;
+  --color-primary-deep: #1a8342;
+  --color-primary-foreground: #062314;
+  --color-primary-hover: #3ddc7c;
+  --color-primary-active: #26ba5e;
+  --color-primary-muted: rgb(61 220 124 / 14%);
+  --color-primary-subtle: rgb(61 220 124 / 22%);
+
+  --color-action: #26ba5e;
+  --color-action-hover: #3ddc7c;
+  --color-action-active: #1a8342;
+  --color-action-foreground: #062314;
+
+  --color-cta: #315d42;
+  --color-cta-hover: #3d7050;
+  --color-cta-foreground: #f5faf6;
+
+  --color-text-primary: #eef4ef;
+  --color-text-secondary: #c5d0c8;
+  --color-text-tertiary: #a0ada4;
+  --color-text-muted: #829087;
+  --color-text-soft: #b1bdb4;
+  --color-text-inverse: #111713;
+
+  --color-canvas: #101713;
+  --color-canvas-soft: #141d17;
+  --color-surface: #18211b;
+  --color-surface-raised: #202b24;
+  --color-surface-subtle: #1c261f;
+  --color-surface-muted: #253129;
+  --color-surface-ink: #0b100d;
+  --color-field: #1d2821;
+  --color-notice: #1c261f;
+
+  --color-border: #29352d;
+  --color-border-soft: #202a23;
+  --color-border-card: #263129;
+  --color-border-faint: #1c261f;
+  --color-border-strong: #303a32;
+  --color-track: #29352d;
+}
+
+/* Status colours in dark mode */
+.dark .bg-emerald-50 {
+  background-color: #173625;
+}
+
+.dark .text-emerald-700,
+.dark .text-emerald-600 {
+  color: #8ed3a4;
+}
+
+.dark .bg-amber-50 {
+  background-color: #3a2d16;
+}
+
+.dark .text-amber-700 {
+  color: #f0c978;
+}
+
+.dark .bg-red-50 {
+  background-color: #3b2020;
+}
+
+.dark .text-red-600,
+.dark .text-red-500 {
+  color: #f1a1a1;
+}
+
+.dark .border-red-200 {
+  border-color: #5a2b2b;
+}
+
+.dark .hover\:bg-red-50:hover,
+.dark .hover\:bg-red-100:hover {
+  background-color: #4a2828;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    font-size: 16px;
+  }
+
+  /* Nudge the whole rem-based type scale up on larger displays.
+     Media queries use the initial font size, so layout breakpoints are
+     unaffected. */
+  @media (min-width: 1024px) {
+    html {
+      font-size: 17.6px; /* +10% on laptops */
+    }
+  }
+
+  @media (min-width: 1536px) {
+    html {
+      font-size: 20px; /* +25% on bigger screens */
+    }
+  }
+
+  body {
+    font-family: "Plus Jakarta Sans", "Inter", -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, sans-serif;
+    background-color: var(--color-canvas);
+    color: var(--color-text-primary);
+    letter-spacing: -0.011em;
+  }
+
+  /* Form controls use the marketing site (frontz) fonts everywhere,
+     including the dashboard and admin panels: Mulish for fields, Syne for
+     buttons (matching frontz's .theme-btn). */
+  input,
+  select,
+  textarea {
+    font-family: var(--font-auth);
+  }
+
+  button {
+    font-family: var(--font-auth-display);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-field) inset !important;
+    box-shadow: 0 0 0 1000px var(--color-field) inset !important;
+    -webkit-text-fill-color: var(--color-text-primary) !important;
+    caret-color: var(--color-text-primary);
+    transition: background-color 9999s ease-in-out 0s;
+  }
+}
+
+@keyframes da-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.da-fade-in {
+  animation: da-fade-in 0.16s ease-out;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* --------------------------------------------------------------------------
+   Google Translate
+   Translation is driven by the in-app LanguageSwitcher. The element below is
+   only the hidden engine; Google's injected banner/tooltip chrome is hidden
+   so the dashboard keeps its own layout.
+-------------------------------------------------------------------------- */
+#google_translate_element {
+  position: fixed !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+iframe.skiptranslate,
+.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-te-spinner-pos {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
+
