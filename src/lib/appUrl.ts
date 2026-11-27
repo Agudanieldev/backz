@@ -1,13 +1,10 @@
-// Canonical public URL used in auth redirects. Set VITE_APP_URL only when you
-// need to force one domain (e.g. production must always be
-// https://app.tradezanga.com). Otherwise the current origin is used, which
-// makes Vercel preview deployments and custom domains work automatically.
+// Canonical public URL used in auth redirects. Auth emails must always send
+// users to the production app, so the default is https://app.tradezanga.com
+// rather than the current origin (which may be localhost or a preview deploy).
+// Set VITE_APP_URL to override it when testing auth emails on another origin.
 const configured = import.meta.env.VITE_APP_URL?.trim();
 
-const fallback =
-  typeof window !== "undefined"
-    ? window.location.origin
-    : "http://localhost:5173";
+const fallback = "https://app.tradezanga.com";
 
 export const APP_URL = (configured || fallback).replace(/\/+$/, "");
 

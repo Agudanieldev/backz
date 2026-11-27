@@ -57,6 +57,9 @@ function render(file) {
 
 const confirmation = await render("confirmation.html");
 const recovery = await render("recovery.html");
+const emailChange = await render("email-change.html");
+const invite = await render("invite.html");
+const magicLink = await render("magic-link.html");
 
 async function api(path, init = {}) {
   const response = await fetch(`${API_BASE}${path}`, {
@@ -93,6 +96,12 @@ await api(`/projects/${PROJECT_REF}/config/auth`, {
     mailer_templates_confirmation_content: confirmation,
     mailer_subjects_recovery: "Reset your TradeZanga password",
     mailer_templates_recovery_content: recovery,
+    mailer_subjects_email_change: "Confirm your new TradeZanga email address",
+    mailer_templates_email_change_content: emailChange,
+    mailer_subjects_invite: "You're invited to TradeZanga",
+    mailer_templates_invite_content: invite,
+    mailer_subjects_magic_link: "Your TradeZanga sign-in link",
+    mailer_templates_magic_link_content: magicLink,
   }),
 });
 

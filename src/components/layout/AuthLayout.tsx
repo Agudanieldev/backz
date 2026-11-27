@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { Link } from "react-router-dom";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 interface AuthLayoutProps {
@@ -30,20 +29,28 @@ export function AuthLayout({
 
       <div className="relative z-10 flex min-h-dvh flex-col justify-center px-4 py-10 sm:px-6 lg:items-start lg:px-[8vw]">
         <div className="mx-auto w-full max-w-sm lg:mx-0">
-          <Link
-            to="/login"
+          <div
             translate="no"
-            aria-label="TradeZanga × Infinite Shares"
             className="mb-5 flex flex-wrap items-center gap-x-2 gap-y-1"
           >
-            <span className="font-auth-display text-lg font-extrabold tracking-tight text-primary">
+            <a
+              href="https://tradezanga.com"
+              aria-label="TradeZanga"
+              className="font-auth-display text-lg font-extrabold tracking-tight text-primary hover:underline"
+            >
               TradeZanga
+            </a>
+            <span aria-hidden="true" className="text-xs font-medium text-white/40">
+              ×
             </span>
-            <span className="text-xs font-medium text-white/40">×</span>
-            <span className="text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-white/80">
+            <a
+              href="https://infiniteshares.tradezanga.com"
+              aria-label="Infinite Shares"
+              className="text-[0.625rem] font-semibold uppercase tracking-[0.22em] text-white/80 hover:underline"
+            >
               Infinite Shares
-            </span>
-          </Link>
+            </a>
+          </div>
 
           <div className="rounded-2xl border border-black/5 bg-surface/95 p-6 shadow-2xl backdrop-blur-md sm:p-7 dark:border-white/10">
             <div className="flex items-start justify-between gap-3">
@@ -69,7 +76,18 @@ export function AuthLayout({
 
           <p className="mt-5 text-[0.625rem] text-white/60">
             Secure access · © {new Date().getFullYear()}{" "}
-            <span translate="no">TradeZanga × Infinite Shares</span>
+            <span translate="no">
+              <a href="https://tradezanga.com" className="hover:underline">
+                TradeZanga
+              </a>{" "}
+              ×{" "}
+              <a
+                href="https://infiniteshares.tradezanga.com"
+                className="hover:underline"
+              >
+                Infinite Shares
+              </a>
+            </span>
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Building2, ChartCandlestick, Check } from "lucide-react";
 import { cn } from "@/lib/cn";
 import { WalletAddress } from "@/components/composite/WalletAddress";
+import { OtherPaymentMethods } from "@/components/composite/OtherPaymentMethods";
 import { PageHeader } from "@/components/composite/PageHeader";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -27,8 +28,8 @@ const REAL_ESTATE_PLANS: Plan[] = [
     location: "Cleveland, OH",
     price: "$500 – $5,000",
     features: [
+      "Target Returns: 15% – 30%",
       "Entry-Level Investment Property",
-      "Estimated ROI: 4% – 6% Annually",
       "Located in an Emerging Rental Market",
       "Low Maintenance, Single-Family Unit",
     ],
@@ -37,38 +38,38 @@ const REAL_ESTATE_PLANS: Plan[] = [
   {
     name: "Gold",
     location: "Austin, TX",
-    price: "$6,000 – $15,000",
+    price: "$5,000 – $15,000",
     badge: "Hot",
     featured: true,
     features: [
+      "Target Returns: 30% – 55%",
       "Mid-Tier Multifamily Investment",
-      "Estimated ROI: 7% – 9% Annually",
       "High Demand Rental Zone",
       "Appreciation-Driven Growth Area",
     ],
     cta: "Invest",
   },
   {
-    name: "Platinum",
-    location: "Seattle, WA",
-    price: "$16,000 – $50,000",
+    name: "Diamond",
+    location: "Manhattan, NY",
+    price: "$15,000 – $50,000",
     features: [
-      "High-Yield Urban Property Portfolio",
-      "Projected ROI: 10% – 13% Annually",
-      "Prime Location with Tech Industry Spillover",
-      "Eligible for Short-Term Rental Income",
+      "Target Returns: 55% – 85%",
+      "Premium Commercial Property Holdings",
+      "Class-A Assets in Core Manhattan Districts",
+      "Institutional Grade Investment Opportunity",
     ],
     cta: "Invest",
   },
   {
-    name: "Diamond",
-    location: "Manhattan, NY",
-    price: "$50,000 – $200,000",
+    name: "Platinum",
+    location: "Seattle, WA",
+    price: "$50,000 – $350,000",
     features: [
-      "Premium Commercial Property Holdings",
-      "Capital Growth Potential: 15%+ Yearly",
-      "Class-A Assets in Core Manhattan Districts",
-      "Institutional Grade Investment Opportunity",
+      "Target Returns: 85% – 130%+",
+      "High-Yield Urban Property Portfolio",
+      "Prime Location with Tech Industry Spillover",
+      "Eligible for Short-Term Rental Income",
     ],
     cta: "Invest",
   },
@@ -329,6 +330,10 @@ export default function InvestPage() {
         }
       >
         <WalletAddress />
+        <OtherPaymentMethods
+          className="mt-4"
+          onChatAdmin={() => setSelected(null)}
+        />
         <p className="mt-3 text-[0.625rem] leading-relaxed text-text-muted">
           Deposits are reviewed by an admin before your package is activated.
         </p>

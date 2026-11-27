@@ -4,6 +4,7 @@ import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
+import { OtherPaymentMethods } from "./OtherPaymentMethods";
 import { WalletAddress } from "./WalletAddress";
 
 interface DepositModalProps {
@@ -81,6 +82,8 @@ export function DepositModal({ open, onClose, onSaved }: DepositModalProps) {
           Send deposit request
         </Button>
       </form>
+
+      <OtherPaymentMethods className="mt-4" onChatAdmin={onClose} />
 
       <p className="mt-3 text-[0.625rem] leading-relaxed text-text-muted">
         Deposits are reviewed by an admin before your balance is updated.

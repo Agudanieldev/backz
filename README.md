@@ -87,9 +87,10 @@ Only publishable (browser-safe) keys belong in `VITE_*` variables. Anything
 without the `VITE_` prefix stays server-side and is never bundled into the
 client. `.env` is gitignored — never commit it.
 
-`VITE_APP_URL` is optional. When unset, auth redirects use the current origin,
-so the production domain, Vercel preview deployments and localhost all work
-without changes. Set it only when you need to force one canonical URL.
+Auth redirects default to `https://app.tradezanga.com` so confirmation,
+recovery and email-change links always open the production app, even when the
+request was made from localhost. Set `VITE_APP_URL` only when you need auth
+emails to point somewhere else (for example while testing on a preview deploy).
 
 ## Language and support chat
 
@@ -142,18 +143,24 @@ http://localhost:5173/**
 http://127.0.0.1:5173/**
 ```
 
-Custom signup and password-reset emails live in `supabase/templates/`. Apply
-them with a scoped personal access token (set `SUPABASE_ACCESS_TOKEN` in
-`.env`):
+Supabase stores the live email copy in the hosted project. The files in
+`supabase/templates/` are versioned copies. To apply them, either paste them in
+**Authentication → Email Templates** or push them with a scoped personal access
+token (only **Auth Config: Read and write** is needed):
 
 ```bash
 npm run emails:push
 ```
 
-The script reads `.env` automatically, updates the Site URL, merges the
-redirect allow list (including Vercel previews) and rewrites the template links
-to the current `SITE_URL`. See `supabase/email-templates.md` for the manual
-dashboard steps as well.
+The token is only used for the push — never for sending emails — so it can be
+removed afterwards. The script updates the Site URL, merges the redirect allow
+list (including Vercel previews) and rewrites every template link to the current
+`SITE_URL`.
+
+To push from GitHub instead of your machine, add the token as the
+`SUPABASE_ACCESS_TOKEN` repository secret and run the **Push auth email
+templates** workflow from the Actions tab. See `supabase/email-templates.md`
+for the manual dashboard steps as well.
 
 Data access is unchanged: `profiles`, `transactions`, `contact_messages`, and
 the `review_transaction` RPC, all guarded by the existing RLS policies. See
@@ -172,7 +179,7 @@ catch-all rewrite. No `404.html` or `CNAME` file is needed.
    **Development** under Project → Settings → Environment Variables:
    - `VITE_SUPABASE_URL`
    - `VITE_SUPABASE_PUBLISHABLE_KEY`
-   - `VITE_APP_URL` (optional, only to force a canonical URL)
+   - `VITE_APP_URL` (optional override; defaults to `https://app.tradezanga.com`)
 3. Deploy. Then add the custom domain under Project → Domains and point DNS at
    Vercel (`A 76.76.21.21` for the apex, or
    `CNAME cname.vercel-dns.com` for a subdomain). Remove the old GitHub Pages

@@ -12,8 +12,8 @@ const PLAN_OPTIONS = [
   "None",
   "Silver",
   "Gold",
-  "Platinum",
   "Diamond",
+  "Platinum",
   "Huge Volume",
 ];
 
