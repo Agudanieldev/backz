@@ -19,7 +19,7 @@ export function Pagination({
   onPageChange,
   onPageSizeChange,
   label = "items",
-  pageSizeOptions = [10, 20, 50],
+  pageSizeOptions = [ 5, 10, 20],
 }: PaginationProps) {
   if (total === 0) return null;
 

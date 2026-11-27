@@ -9,6 +9,7 @@ import {
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { currency, formatDate, money } from "@/lib/format";
+import { investmentTypeLabel } from "@/lib/investmentPlans";
 import type { Transaction } from "@/lib/types";
 import { PageHeader } from "@/components/composite/PageHeader";
 import { StatCard } from "@/components/composite/StatCard";
@@ -24,7 +25,7 @@ import { StatusBadge } from "@/components/ui/Badge";
 
 type ModalKind = "deposit" | "withdraw" | null;
 
-const DEFAULT_PAGE_SIZE = 10;
+const DEFAULT_PAGE_SIZE = 5;
 
 export default function DashboardPage() {
   const { profile, refreshProfile } = useAuth();
@@ -223,6 +224,10 @@ export default function DashboardPage() {
                       <p className="mt-0.5 text-[0.625rem] text-text-muted">
                         {formatDate(tx.created_at)}
                       </p>
+                      <p className="mt-0.5 text-[0.625rem] text-text-muted">
+                        {investmentTypeLabel(tx.investment_type)}
+                        {tx.package ? ` · ${tx.package}` : ""}
+                      </p>
                     </div>
                     <div className="shrink-0 text-right">
                       <p
@@ -240,13 +245,14 @@ export default function DashboardPage() {
               </ul>
 
               <div className="hidden sm:block">
-                <Table minWidth={560}>
+                <Table minWidth={640}>
                   <thead>
                     <tr>
                       <Th>Date</Th>
                       <Th>Type</Th>
                       <Th>Amount</Th>
-                      <Th>Wallet</Th>
+                      <Th>Investment type</Th>
+                      <Th>Package</Th>
                       <Th>Status</Th>
                     </tr>
                   </thead>
@@ -263,13 +269,11 @@ export default function DashboardPage() {
                         >
                           {currency(tx.amount)}
                         </Td>
-                        <Td className="max-w-[180px]">
-                          <span
-                            translate="no"
-                            className="block truncate font-mono text-[0.625rem]"
-                          >
-                            {tx.wallet_address || "—"}
-                          </span>
+                        <Td className="whitespace-nowrap">
+                          {investmentTypeLabel(tx.investment_type)}
+                        </Td>
+                        <Td className="whitespace-nowrap">
+                          {tx.package || "—"}
                         </Td>
                         <Td>
                           <StatusBadge status={tx.status} />

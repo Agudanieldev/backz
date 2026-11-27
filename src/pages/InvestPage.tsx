@@ -1,13 +1,15 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, type FormEvent } from "react";
 import { Building2, ChartCandlestick, Check } from "lucide-react";
 import { cn } from "@/lib/cn";
+import { supabase } from "@/lib/supabase";
 import { WalletAddress } from "@/components/composite/WalletAddress";
 import { OtherPaymentMethods } from "@/components/composite/OtherPaymentMethods";
 import { PageHeader } from "@/components/composite/PageHeader";
+import { Alert } from "@/components/ui/Alert";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { Input } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
 
 type PackageType = "real" | "digital";
@@ -228,14 +230,64 @@ function PlanCard({
 }
 
 export default function InvestPage() {
-  const navigate = useNavigate();
   const [type, setType] = useState<PackageType>("real");
   const [selected, setSelected] = useState<Plan | null>(null);
+  const [amount, setAmount] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [saving, setSaving] = useState(false);
 
   const plans = type === "real" ? REAL_ESTATE_PLANS : DIGITAL_PLANS;
   const copy = TYPE_COPY[type];
   const isDigital = type === "digital";
   const HeaderIcon = isDigital ? ChartCandlestick : Building2;
+
+  function closeModal() {
+    setSelected(null);
+    setAmount("");
+    setError("");
+    setSuccess("");
+  }
+
+  function selectPlan(plan: Plan) {
+    setAmount("");
+    setError("");
+    setSuccess("");
+    setSelected(plan);
+  }
+
+  async function handleInvest(event: FormEvent) {
+    event.preventDefault();
+    if (!selected) return;
+
+    setError("");
+    setSuccess("");
+
+    const value = Number(amount);
+    if (!(value > 0)) {
+      setError("Enter a valid amount.");
+      return;
+    }
+
+    setSaving(true);
+    const { error: insertError } = await supabase.from("transactions").insert({
+      type: "deposit",
+      amount: value,
+      investment_type: type,
+      package: selected.name,
+    });
+    setSaving(false);
+
+    if (insertError) {
+      setError(insertError.message);
+      return;
+    }
+
+    setAmount("");
+    setSuccess(
+      "Investment request sent to the admin. Your package will be activated after review.",
+    );
+  }
 
   return (
     <>
@@ -295,44 +347,65 @@ export default function InvestPage() {
 
       <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {plans.map((plan) => (
-          <PlanCard key={plan.name} plan={plan} type={type} onSelect={setSelected} />
+          <PlanCard
+            key={plan.name}
+            plan={plan}
+            type={type}
+            onSelect={selectPlan}
+          />
         ))}
       </div>
 
       <Modal
         open={Boolean(selected)}
-        onClose={() => setSelected(null)}
+        onClose={closeModal}
         title={selected ? `${selected.name} — ${selected.location}` : ""}
         description={
           selected
-            ? `${selected.price}. Send your deposit to the wallet below, then submit the amount you sent from your dashboard.`
+            ? `${selected.price}. Send your deposit to the Bitcoin address below, then enter the amount you sent.`
             : undefined
         }
         footer={
           <div className="grid gap-2 sm:grid-cols-2">
-            <Button
-              variant="secondary"
-              onClick={() => setSelected(null)}
-              fullWidth
-            >
+            <Button variant="secondary" onClick={closeModal} fullWidth>
               Close
             </Button>
             <Button
-              onClick={() => {
-                setSelected(null);
-                navigate("/dashboard");
-              }}
+              type="submit"
+              form="invest-request-form"
+              loading={saving}
               fullWidth
             >
-              Go to dashboard
+              Invest
             </Button>
           </div>
         }
       >
         <WalletAddress />
+        <form
+          id="invest-request-form"
+          onSubmit={handleInvest}
+          className="mt-4 space-y-3"
+        >
+          <Input
+            label="Amount sent (USD)"
+            type="number"
+            min={1}
+            step="0.01"
+            placeholder="500"
+            value={amount}
+            onChange={(event) => setAmount(event.target.value)}
+            hint="Enter the amount you sent to the wallet address above."
+            required
+          />
+
+          {error && <Alert variant="error">{error}</Alert>}
+          {success && <Alert variant="success">{success}</Alert>}
+        </form>
+
         <OtherPaymentMethods
           className="mt-4"
-          onChatAdmin={() => setSelected(null)}
+          onChatAdmin={closeModal}
         />
         <p className="mt-3 text-[0.625rem] leading-relaxed text-text-muted">
           Deposits are reviewed by an admin before your package is activated.

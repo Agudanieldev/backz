@@ -3,11 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Inbox, Mail, RefreshCw, Users } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { currency, formatDate, fullName } from "@/lib/format";
+import { investmentTypeLabel } from "@/lib/investmentPlans";
 import type { ContactMessage, Profile, Transaction } from "@/lib/types";
 import { PageHeader } from "@/components/composite/PageHeader";
 import { StatCard } from "@/components/composite/StatCard";
 import { EmptyState } from "@/components/composite/EmptyState";
 import { Alert } from "@/components/ui/Alert";
+import { StatusBadge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Pagination } from "@/components/ui/Pagination";
@@ -17,6 +19,10 @@ type Notice = { variant: "success" | "error"; message: string } | null;
 type Decision = "approved" | "rejected";
 
 const DEFAULT_PAGE_SIZE = 10;
+
+function requestTypeLabel(tx: Transaction) {
+  return tx.investment_type || tx.package ? "investment" : tx.type;
+}
 
 export default function AdminPage() {
   const navigate = useNavigate();
@@ -28,12 +34,13 @@ export default function AdminPage() {
   const [statsLoading, setStatsLoading] = useState(true);
   const [statsError, setStatsError] = useState("");
 
-  const [pending, setPending] = useState<Transaction[]>([]);
-  const [pendingTotal, setPendingTotal] = useState(0);
-  const [pendingPage, setPendingPage] = useState(1);
-  const [pendingPageSize, setPendingPageSize] = useState(DEFAULT_PAGE_SIZE);
-  const [pendingLoading, setPendingLoading] = useState(true);
-  const [pendingError, setPendingError] = useState("");
+  const [requests, setRequests] = useState<Transaction[]>([]);
+  const [requestsTotal, setRequestsTotal] = useState(0);
+  const [requestsPage, setRequestsPage] = useState(1);
+  const [requestsPageSize, setRequestsPageSize] = useState(DEFAULT_PAGE_SIZE);
+  const [requestsLoading, setRequestsLoading] = useState(true);
+  const [requestsError, setRequestsError] = useState("");
+  const [pendingCount, setPendingCount] = useState(0);
 
   const [messages, setMessages] = useState<ContactMessage[]>([]);
   const [messagesTotal, setMessagesTotal] = useState(0);
@@ -48,11 +55,11 @@ export default function AdminPage() {
     decision: Decision;
   } | null>(null);
 
-  const pendingRequest = useRef(0);
+  const requestsRequest = useRef(0);
   const messagesRequest = useRef(0);
 
-  const loading = statsLoading || pendingLoading || messagesLoading;
-  const loadError = statsError || pendingError || messagesError;
+  const loading = statsLoading || requestsLoading || messagesLoading;
+  const loadError = statsError || requestsError || messagesError;
 
   const loadStats = useCallback(async () => {
     setStatsLoading(true);
@@ -82,42 +89,50 @@ export default function AdminPage() {
     setStatsLoading(false);
   }, []);
 
-  const loadPending = useCallback(async () => {
-    const requestId = ++pendingRequest.current;
-    setPendingLoading(true);
-    const from = (pendingPage - 1) * pendingPageSize;
-    const to = from + pendingPageSize - 1;
+  const loadRequests = useCallback(async () => {
+    const requestId = ++requestsRequest.current;
+    setRequestsLoading(true);
+    const from = (requestsPage - 1) * requestsPageSize;
+    const to = from + requestsPageSize - 1;
 
-    const { data, error, count } = await supabase
-      .from("transactions")
-      .select("*", { count: "exact" })
-      .eq("status", "pending")
-      .order("created_at", { ascending: false })
-      .range(from, to);
+    const [listResult, pendingResult] = await Promise.all([
+      supabase
+        .from("transactions")
+        .select("*", { count: "exact" })
+        .order("created_at", { ascending: false })
+        .range(from, to),
+      supabase
+        .from("transactions")
+        .select("id", { count: "exact", head: true })
+        .eq("status", "pending"),
+    ]);
 
-    if (requestId !== pendingRequest.current) return;
+    if (requestId !== requestsRequest.current) return;
 
-    if (error) {
-      setPendingError(error.message);
-      setPendingLoading(false);
+    const failed = listResult.error ?? pendingResult.error;
+    if (failed) {
+      setRequestsError(failed.message);
+      setRequestsLoading(false);
       return;
     }
 
-    setPendingError("");
-    const total = count ?? 0;
-    setPendingTotal(total);
+    setRequestsError("");
+    setPendingCount(pendingResult.count ?? 0);
 
-    // Approving the last row on a page can leave it out of range.
-    const lastPage = Math.max(1, Math.ceil(total / pendingPageSize));
-    if (pendingPage > lastPage) {
-      setPending([]);
-      setPendingPage(lastPage);
+    // Keep reviewed requests visible; only the page range needs clamping.
+    const total = listResult.count ?? 0;
+    setRequestsTotal(total);
+
+    const lastPage = Math.max(1, Math.ceil(total / requestsPageSize));
+    if (requestsPage > lastPage) {
+      setRequests([]);
+      setRequestsPage(lastPage);
       return;
     }
 
-    setPending((data ?? []) as Transaction[]);
-    setPendingLoading(false);
-  }, [pendingPage, pendingPageSize]);
+    setRequests((listResult.data ?? []) as Transaction[]);
+    setRequestsLoading(false);
+  }, [requestsPage, requestsPageSize]);
 
   const loadMessages = useCallback(async () => {
     const requestId = ++messagesRequest.current;
@@ -159,20 +174,20 @@ export default function AdminPage() {
   }, [loadStats]);
 
   useEffect(() => {
-    void loadPending();
-  }, [loadPending]);
+    void loadRequests();
+  }, [loadRequests]);
 
   useEffect(() => {
     void loadMessages();
   }, [loadMessages]);
 
   const refreshAll = useCallback(
-    () => Promise.all([loadStats(), loadPending(), loadMessages()]),
-    [loadStats, loadPending, loadMessages],
+    () => Promise.all([loadStats(), loadRequests(), loadMessages()]),
+    [loadStats, loadRequests, loadMessages],
   );
 
   async function review(id: number, decision: Decision) {
-    const tx = pending.find((entry) => entry.id === id);
+    const tx = requests.find((entry) => entry.id === id);
     const client = tx
       ? profiles.find((profile) => profile.id === tx.user_id)
       : undefined;
@@ -200,7 +215,7 @@ export default function AdminPage() {
           ? `${name}'s request approved and balances updated.`
           : `${name}'s request was rejected.`,
     });
-    await Promise.all([loadStats(), loadPending()]);
+    await Promise.all([loadStats(), loadRequests()]);
   }
 
   const approvedDeposits = approvedTransactions
@@ -264,7 +279,7 @@ export default function AdminPage() {
         />
         <StatCard
           label="Pending requests"
-          value={String(pendingTotal)}
+          value={String(pendingCount)}
           hint="Waiting for review"
         />
         <StatCard
@@ -301,8 +316,11 @@ export default function AdminPage() {
 
       <Card className="mt-4 p-5">
         <h2 className="text-sm font-bold tracking-tight text-text-primary">
-          Pending requests
+          Requests
         </h2>
+        <p className="mt-1 text-[0.6875rem] text-text-tertiary">
+          All deposit and withdrawal requests, including reviewed ones.
+        </p>
 
         {notice && (
           <Alert variant={notice.variant} className="mt-3">
@@ -311,15 +329,16 @@ export default function AdminPage() {
         )}
 
         <div className="mt-3">
-          {pendingLoading && !pending.length ? (
+          {requestsLoading && !requests.length ? (
             <p className="py-8 text-center text-xs text-text-muted">
               Loading requests…
             </p>
-          ) : pending.length ? (
+          ) : requests.length ? (
             <>
               <div className="space-y-2 sm:hidden">
-                {pending.map((tx) => {
+                {requests.map((tx) => {
                   const user = profilesById.get(tx.user_id);
+                  const isPending = tx.status === "pending";
                   return (
                     <div
                       key={tx.id}
@@ -331,15 +350,24 @@ export default function AdminPage() {
                             {fullName(user ?? null)}
                           </p>
                           <p className="mt-0.5 text-[0.625rem] capitalize text-text-muted">
-                            {formatDate(tx.created_at)} · {tx.type}
+                            {formatDate(tx.created_at)} · {requestTypeLabel(tx)}
+                          </p>
+                          <p className="mt-0.5 text-[0.625rem] text-text-muted">
+                            {investmentTypeLabel(tx.investment_type)}
+                            {tx.package ? ` · ${tx.package}` : ""}
                           </p>
                         </div>
-                        <p
-                          translate="no"
-                          className="tabular-nums shrink-0 text-sm font-bold text-text-primary"
-                        >
-                          {currency(tx.amount)}
-                        </p>
+                        <div className="shrink-0 text-right">
+                          <p
+                            translate="no"
+                            className="tabular-nums text-sm font-bold text-text-primary"
+                          >
+                            {currency(tx.amount)}
+                          </p>
+                          <div className="mt-1">
+                            <StatusBadge status={tx.status} />
+                          </div>
+                        </div>
                       </div>
 
                       {tx.wallet_address && (
@@ -348,51 +376,57 @@ export default function AdminPage() {
                         </p>
                       )}
 
-                      <div className="mt-3 grid grid-cols-2 gap-2">
-                        <Button
-                          size="sm"
-                          onClick={() => void review(tx.id, "approved")}
-                          loading={
-                            saving?.id === tx.id &&
-                            saving.decision === "approved"
-                          }
-                          disabled={saving !== null}
-                        >
-                          Approve
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="danger"
-                          onClick={() => void review(tx.id, "rejected")}
-                          loading={
-                            saving?.id === tx.id &&
-                            saving.decision === "rejected"
-                          }
-                          disabled={saving !== null}
-                        >
-                          Reject
-                        </Button>
-                      </div>
+                      {isPending && (
+                        <div className="mt-3 grid grid-cols-2 gap-2">
+                          <Button
+                            size="sm"
+                            onClick={() => void review(tx.id, "approved")}
+                            loading={
+                              saving?.id === tx.id &&
+                              saving.decision === "approved"
+                            }
+                            disabled={saving !== null}
+                          >
+                            Approve
+                          </Button>
+                          <Button
+                            size="sm"
+                            variant="danger"
+                            onClick={() => void review(tx.id, "rejected")}
+                            loading={
+                              saving?.id === tx.id &&
+                              saving.decision === "rejected"
+                            }
+                            disabled={saving !== null}
+                          >
+                            Reject
+                          </Button>
+                        </div>
+                      )}
                     </div>
                   );
                 })}
               </div>
 
               <div className="hidden sm:block">
-                <Table minWidth={740}>
+                <Table minWidth={900}>
                   <thead>
                     <tr>
                       <Th>Date</Th>
                       <Th>User</Th>
                       <Th>Type</Th>
                       <Th>Amount</Th>
+                      <Th>Investment type</Th>
+                      <Th>Package</Th>
                       <Th>Wallet</Th>
+                      <Th>Status</Th>
                       <Th>Actions</Th>
                     </tr>
                   </thead>
                   <tbody>
-                    {pending.map((tx) => {
+                    {requests.map((tx) => {
                       const user = profilesById.get(tx.user_id);
+                      const isPending = tx.status === "pending";
                       return (
                         <tr key={tx.id} className="last:[&>td]:border-b-0">
                           <Td className="whitespace-nowrap">
@@ -401,12 +435,18 @@ export default function AdminPage() {
                           <Td className="whitespace-nowrap font-medium text-text-secondary">
                             {fullName(user ?? null)}
                           </Td>
-                          <Td className="capitalize">{tx.type}</Td>
+                          <Td className="capitalize">{requestTypeLabel(tx)}</Td>
                           <Td
                             translate="no"
                             className="tabular-nums whitespace-nowrap font-semibold text-text-primary"
                           >
                             {currency(tx.amount)}
+                          </Td>
+                          <Td className="whitespace-nowrap">
+                            {investmentTypeLabel(tx.investment_type)}
+                          </Td>
+                          <Td className="whitespace-nowrap">
+                            {tx.package || "—"}
                           </Td>
                           <Td className="max-w-[160px]">
                             <span
@@ -417,31 +457,40 @@ export default function AdminPage() {
                             </span>
                           </Td>
                           <Td>
-                            <div className="flex flex-wrap gap-1.5">
-                              <Button
-                                size="sm"
-                                onClick={() => void review(tx.id, "approved")}
-                                loading={
-                                  saving?.id === tx.id &&
-                                  saving.decision === "approved"
-                                }
-                                disabled={saving !== null}
-                              >
-                                Approve
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="danger"
-                                onClick={() => void review(tx.id, "rejected")}
-                                loading={
-                                  saving?.id === tx.id &&
-                                  saving.decision === "rejected"
-                                }
-                                disabled={saving !== null}
-                              >
-                                Reject
-                              </Button>
-                            </div>
+                            <StatusBadge status={tx.status} />
+                          </Td>
+                          <Td>
+                            {isPending ? (
+                              <div className="flex flex-wrap gap-1.5">
+                                <Button
+                                  size="sm"
+                                  onClick={() => void review(tx.id, "approved")}
+                                  loading={
+                                    saving?.id === tx.id &&
+                                    saving.decision === "approved"
+                                  }
+                                  disabled={saving !== null}
+                                >
+                                  Approve
+                                </Button>
+                                <Button
+                                  size="sm"
+                                  variant="danger"
+                                  onClick={() => void review(tx.id, "rejected")}
+                                  loading={
+                                    saving?.id === tx.id &&
+                                    saving.decision === "rejected"
+                                  }
+                                  disabled={saving !== null}
+                                >
+                                  Reject
+                                </Button>
+                              </div>
+                            ) : (
+                              <span className="text-[0.625rem] text-text-muted">
+                                Reviewed
+                              </span>
+                            )}
                           </Td>
                         </tr>
                       );
@@ -453,19 +502,19 @@ export default function AdminPage() {
           ) : (
             <EmptyState
               icon={Inbox}
-              title="No pending requests"
-              description="You are all caught up."
+              title="No requests yet"
+              description="Deposit and withdrawal requests will appear here."
             />
           )}
 
           <Pagination
-            page={pendingPage}
-            pageSize={pendingPageSize}
-            total={pendingTotal}
-            onPageChange={setPendingPage}
+            page={requestsPage}
+            pageSize={requestsPageSize}
+            total={requestsTotal}
+            onPageChange={setRequestsPage}
             onPageSizeChange={(size) => {
-              setPendingPageSize(size);
-              setPendingPage(1);
+              setRequestsPageSize(size);
+              setRequestsPage(1);
             }}
             label="requests"
           />

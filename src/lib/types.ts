@@ -16,6 +16,7 @@ export interface Profile {
 
 export type TransactionType = "deposit" | "withdraw";
 export type TransactionStatus = "pending" | "approved" | "rejected";
+export type InvestmentType = "real" | "digital";
 
 export interface Transaction {
   id: number;
@@ -23,6 +24,8 @@ export interface Transaction {
   type: TransactionType | string;
   amount: number | string;
   wallet_address: string | null;
+  investment_type: InvestmentType | string | null;
+  package: string | null;
   status: TransactionStatus | string;
   created_at: string;
 }

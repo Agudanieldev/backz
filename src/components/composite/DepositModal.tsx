@@ -1,9 +1,16 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { supabase } from "@/lib/supabase";
+import {
+  INVESTMENT_PACKAGES,
+  INVESTMENT_TYPE_OPTIONS,
+  isInvestmentType,
+} from "@/lib/investmentPlans";
+import type { InvestmentType } from "@/lib/types";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Modal } from "@/components/ui/Modal";
+import { Select } from "@/components/ui/Select";
 import { OtherPaymentMethods } from "./OtherPaymentMethods";
 import { WalletAddress } from "./WalletAddress";
 
@@ -15,6 +22,8 @@ interface DepositModalProps {
 
 export function DepositModal({ open, onClose, onSaved }: DepositModalProps) {
   const [amount, setAmount] = useState("");
+  const [investmentType, setInvestmentType] = useState<InvestmentType>("real");
+  const [packageName, setPackageName] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [saving, setSaving] = useState(false);
@@ -22,9 +31,19 @@ export function DepositModal({ open, onClose, onSaved }: DepositModalProps) {
   useEffect(() => {
     if (open) return;
     setAmount("");
+    setInvestmentType("real");
+    setPackageName("");
     setError("");
     setSuccess("");
   }, [open]);
+
+  function handleTypeChange(value: string) {
+    if (!isInvestmentType(value)) return;
+    setInvestmentType(value);
+    setPackageName((current) =>
+      INVESTMENT_PACKAGES[value].includes(current) ? current : "",
+    );
+  }
 
   async function handleSubmit(event: FormEvent) {
     event.preventDefault();
@@ -37,10 +56,18 @@ export function DepositModal({ open, onClose, onSaved }: DepositModalProps) {
       return;
     }
 
+    if (!packageName) {
+      setError("Select the investment package you are depositing for.");
+      return;
+    }
+
     setSaving(true);
-    const { error: insertError } = await supabase
-      .from("transactions")
-      .insert({ type: "deposit", amount: value });
+    const { error: insertError } = await supabase.from("transactions").insert({
+      type: "deposit",
+      amount: value,
+      investment_type: investmentType,
+      package: packageName,
+    });
     setSaving(false);
 
     if (insertError) {
@@ -49,6 +76,7 @@ export function DepositModal({ open, onClose, onSaved }: DepositModalProps) {
     }
 
     setAmount("");
+    setPackageName("");
     setSuccess("Deposit request sent. An admin will review it shortly.");
     await onSaved();
   }
@@ -75,6 +103,27 @@ export function DepositModal({ open, onClose, onSaved }: DepositModalProps) {
           autoFocus
         />
 
+        <Select
+          label="Investment type"
+          options={INVESTMENT_TYPE_OPTIONS.map((option) => ({
+            value: option.value,
+            label: option.label,
+          }))}
+          value={investmentType}
+          onChange={handleTypeChange}
+        />
+
+        <Select
+          label="Package"
+          placeholder="Select a package"
+          options={INVESTMENT_PACKAGES[investmentType].map((name) => ({
+            value: name,
+            label: name,
+          }))}
+          value={packageName}
+          onChange={setPackageName}
+        />
+
         {error && <Alert variant="error">{error}</Alert>}
         {success && <Alert variant="success">{success}</Alert>}
 
@@ -85,9 +134,7 @@ export function DepositModal({ open, onClose, onSaved }: DepositModalProps) {
 
       <OtherPaymentMethods className="mt-4" onChatAdmin={onClose} />
 
-      <p className="mt-3 text-[0.625rem] leading-relaxed text-text-muted">
-        Deposits are reviewed by an admin before your balance is updated.
-      </p>
+  
     </Modal>
   );
 }
