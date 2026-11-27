@@ -36,6 +36,7 @@ declare global {
 }
 
 let mobileBubbleSuppressed = false;
+let authPageActive = false;
 let chatMaximized = false;
 
 export function isMobileViewport() {
@@ -46,14 +47,17 @@ export function isMobileViewport() {
 }
 
 /**
- * The mobile tab bar replaces Tawk's floating bubble on authenticated pages.
- * Auth screens do not render the tab bar, so they keep the bubble.
+ * The chat widget is never shown on auth screens. On authenticated mobile
+ * pages the tab bar replaces Tawk's floating bubble instead.
  */
 export function syncTawkVisibility() {
   const api = window.Tawk_API;
   if (!api) return;
 
-  if (isMobileViewport() && mobileBubbleSuppressed && !chatMaximized) {
+  if (
+    authPageActive ||
+    (isMobileViewport() && mobileBubbleSuppressed && !chatMaximized)
+  ) {
     api.hideWidget?.();
   } else {
     api.showWidget?.();
@@ -66,11 +70,20 @@ export function setMobileBubbleSuppressed(suppressed: boolean) {
 }
 
 /**
+ * Auth screens call this while they are mounted so the widget stays hidden
+ * even if the Tawk script has already loaded.
+ */
+export function setChatSuppressed(suppressed: boolean) {
+  authPageActive = suppressed;
+  syncTawkVisibility();
+}
+
+/**
  * Used from Tawk's onBeforeLoad to avoid a one-frame flash of the bubble on
- * authenticated mobile screens before onLoad runs.
+ * auth screens and authenticated mobile screens before onLoad runs.
  */
 export function prepareTawkOnMobile() {
-  if (isMobileViewport() && mobileBubbleSuppressed) {
+  if (authPageActive || (isMobileViewport() && mobileBubbleSuppressed)) {
     window.Tawk_API?.hideWidget?.();
   }
 }

@@ -146,7 +146,7 @@ http://127.0.0.1:5173/**
 Supabase stores the live email copy in the hosted project. The files in
 `supabase/templates/` are versioned copies. To apply them, either paste them in
 **Authentication → Email Templates** or push them with a scoped personal access
-token (only **Auth Config: Read and write** is needed):
+token (grant **Auth Config: Read-write** and **Project Settings: Read-write**):
 
 ```bash
 npm run emails:push

@@ -17,8 +17,8 @@ const SCRIPT_ID = "tawk-widget-script";
  * lives outside the router, so navigating between dashboard pages keeps the
  * same chat thread open.
  *
- * On authenticated mobile screens the floating bubble is hidden and the
- * mobile tab bar's customer-care button opens the chat instead.
+ * On auth screens the bubble is always hidden, and on authenticated mobile
+ * screens the mobile tab bar's customer-care button opens the chat instead.
  */
 export function TawkWidget() {
   useEffect(() => {
@@ -32,8 +32,8 @@ export function TawkWidget() {
     if (!document.getElementById(SCRIPT_ID)) {
       const api = (window.Tawk_API = window.Tawk_API ?? {});
 
-      // Keep the bubble above the mobile tab bar when it is visible on auth
-      // screens; authenticated screens hide it entirely.
+      // Auth screens hide the bubble entirely; keep it above the mobile tab
+      // bar on the authenticated pages where it is visible.
       api.customStyle = {
         visibility: {
           desktop: { position: "br", xOffset: 20, yOffset: 20 },

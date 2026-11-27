@@ -1,4 +1,5 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
+import { setChatSuppressed } from "@/lib/tawk";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 interface AuthLayoutProps {
@@ -14,6 +15,12 @@ export function AuthLayout({
   children,
   footer,
 }: AuthLayoutProps) {
+  // Keep the support chat widget hidden while any auth screen is mounted.
+  useEffect(() => {
+    setChatSuppressed(true);
+    return () => setChatSuppressed(false);
+  }, []);
+
   return (
     <div className="relative flex min-h-dvh flex-col overflow-hidden bg-surface-ink font-auth">
       {/* Legacy auth background */}

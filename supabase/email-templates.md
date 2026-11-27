@@ -38,9 +38,12 @@ https://app.tradezanga.com
 ## Apply with the Management API
 
 1. Create a **scoped** personal access token at
-   https://supabase.com/dashboard/account/tokens. Grant only **Auth Config:
-   Read and write** for this project. Choose a 1-year or no-expiry token if you
-   want to reuse it, or a 24-hour token for a one-time push.
+   https://supabase.com/dashboard/account/tokens. Grant **Auth Config:
+   Read-write** *and* **Project Settings: Read-write** for this project. The
+   Management API rejects the auth-config update with
+   `Missing required permission(s): project_admin_write` unless both are
+   present. Choose a 1-year or no-expiry token if you want to reuse it, or a
+   24-hour token for a one-time push.
 2. Put it in `.env` (or export it), then run:
 
 ```bash

@@ -38,7 +38,8 @@ const REDIRECT_URLS = [
 if (!ACCESS_TOKEN) {
   console.error(
     "Missing SUPABASE_ACCESS_TOKEN.\n" +
-      "Create a scoped token at https://supabase.com/dashboard/account/tokens,\n" +
+      "Create a scoped token at https://supabase.com/dashboard/account/tokens\n" +
+      "with Auth Config (Read-write) AND Project Settings (Read-write),\n" +
       "add it to .env (or export it), then run:\n" +
       "  npm run emails:push",
   );
@@ -73,6 +74,23 @@ async function api(path, init = {}) {
 
   const body = await response.text();
   if (!response.ok) {
+    if (response.status === 403 && body.includes("missing_permissions")) {
+      let missing = [];
+      try {
+        missing = JSON.parse(body)?.error?.missing_permissions ?? [];
+      } catch {
+        // Fall back to the raw response below.
+      }
+      throw new Error(
+        `Supabase API 403: the token is missing ` +
+          `${missing.join(", ") || "a required permission"}.\n` +
+          "Scoped tokens need BOTH Auth Config (Read-write) and " +
+          "Project Settings (Read-write).\n" +
+          "Edit the token at https://supabase.com/dashboard/account/tokens, " +
+          "update SUPABASE_ACCESS_TOKEN in .env, then rerun npm run emails:push.\n" +
+          `Response: ${body}`,
+      );
+    }
     throw new Error(`Supabase API ${response.status}: ${body}`);
   }
 

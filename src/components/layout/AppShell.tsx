@@ -17,7 +17,7 @@ export function AppShell() {
 
   useEffect(() => {
     // The mobile tab bar owns chat access here, so hide Tawk's bubble only
-    // while an authenticated shell is mounted. Auth screens keep the bubble.
+    // while an authenticated shell is mounted. Auth screens hide it themselves.
     setMobileBubbleSuppressed(true);
     return () => setMobileBubbleSuppressed(false);
   }, []);

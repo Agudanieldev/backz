@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   ArrowDownToLine,
@@ -18,10 +18,13 @@ import { WithdrawModal } from "@/components/composite/WithdrawModal";
 import { Alert } from "@/components/ui/Alert";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
+import { Pagination } from "@/components/ui/Pagination";
 import { Table, Td, Th } from "@/components/ui/Table";
 import { StatusBadge } from "@/components/ui/Badge";
 
 type ModalKind = "deposit" | "withdraw" | null;
+
+const DEFAULT_PAGE_SIZE = 10;
 
 export default function DashboardPage() {
   const { profile, refreshProfile } = useAuth();
@@ -33,9 +36,15 @@ export default function DashboardPage() {
   const [showWelcome, setShowWelcome] = useState(welcomeRequested);
 
   const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactionsTotal, setTransactionsTotal] = useState(0);
+  const [transactionsPage, setTransactionsPage] = useState(1);
+  const [transactionsPageSize, setTransactionsPageSize] = useState(
+    DEFAULT_PAGE_SIZE,
+  );
   const [transactionsLoading, setTransactionsLoading] = useState(true);
   const [transactionsError, setTransactionsError] = useState("");
   const [modal, setModal] = useState<ModalKind>(null);
+  const transactionsRequest = useRef(0);
 
   // Read the one-shot welcome state once, then clear it so refreshes and
   // back-navigation do not replay the greeting.
@@ -51,26 +60,47 @@ export default function DashboardPage() {
   }, [showWelcome]);
 
   const loadTransactions = useCallback(async () => {
+    const requestId = ++transactionsRequest.current;
     setTransactionsLoading(true);
-    const { data, error } = await supabase
+    const from = (transactionsPage - 1) * transactionsPageSize;
+    const to = from + transactionsPageSize - 1;
+
+    const { data, error, count } = await supabase
       .from("transactions")
-      .select("*")
-      .order("created_at", { ascending: false });
+      .select("*", { count: "exact" })
+      .order("created_at", { ascending: false })
+      .range(from, to);
+
+    if (requestId !== transactionsRequest.current) return;
 
     if (error) {
       setTransactionsError(error.message);
-    } else {
-      setTransactions((data ?? []) as Transaction[]);
-      setTransactionsError("");
+      setTransactionsLoading(false);
+      return;
     }
+
+    setTransactionsError("");
+    const total = count ?? 0;
+    setTransactionsTotal(total);
+
+    // A newly submitted request (or shrinking data) can leave the page out of range.
+    const lastPage = Math.max(1, Math.ceil(total / transactionsPageSize));
+    if (transactionsPage > lastPage) {
+      setTransactions([]);
+      setTransactionsPage(lastPage);
+      return;
+    }
+
+    setTransactions((data ?? []) as Transaction[]);
     setTransactionsLoading(false);
-  }, []);
+  }, [transactionsPage, transactionsPageSize]);
 
   useEffect(() => {
     void loadTransactions();
   }, [loadTransactions]);
 
   const handleSaved = useCallback(async () => {
+    setTransactionsPage(1);
     await Promise.all([loadTransactions(), refreshProfile()]);
   }, [loadTransactions, refreshProfile]);
 
@@ -257,6 +287,18 @@ export default function DashboardPage() {
               description="Use the deposit or withdraw button above to get started."
             />
           )}
+
+          <Pagination
+            page={transactionsPage}
+            pageSize={transactionsPageSize}
+            total={transactionsTotal}
+            onPageChange={setTransactionsPage}
+            onPageSizeChange={(size) => {
+              setTransactionsPageSize(size);
+              setTransactionsPage(1);
+            }}
+            label="requests"
+          />
         </div>
 
         <p className="mt-3 text-[0.625rem] leading-relaxed text-text-muted">
