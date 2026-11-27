@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Inbox, Mail, RefreshCw, Users } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { currency, formatDate, fullName } from "@/lib/format";
-import { investmentTypeLabel } from "@/lib/investmentPlans";
+import { investmentTypeLabel, requestTypeLabel } from "@/lib/investmentPlans";
 import type { ContactMessage, Profile, Transaction } from "@/lib/types";
 import { PageHeader } from "@/components/composite/PageHeader";
 import { StatCard } from "@/components/composite/StatCard";
@@ -19,10 +19,6 @@ type Notice = { variant: "success" | "error"; message: string } | null;
 type Decision = "approved" | "rejected";
 
 const DEFAULT_PAGE_SIZE = 10;
-
-function requestTypeLabel(tx: Transaction) {
-  return tx.investment_type || tx.package ? "investment" : tx.type;
-}
 
 export default function AdminPage() {
   const navigate = useNavigate();

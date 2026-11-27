@@ -1,4 +1,4 @@
-import type { InvestmentType } from "./types";
+import type { InvestmentType, Transaction } from "./types";
 
 export const INVESTMENT_TYPE_OPTIONS: {
   value: InvestmentType;
@@ -25,4 +25,14 @@ export function investmentTypeLabel(value: string | null | undefined) {
 
 export function isInvestmentType(value: string): value is InvestmentType {
   return value === "real" || value === "digital";
+}
+
+/**
+ * Package requests are shown as "investment" to admins and users, while the
+ * stored transaction type stays "deposit" so balance updates keep working.
+ */
+export function requestTypeLabel(
+  tx: Pick<Transaction, "type" | "investment_type" | "package">,
+) {
+  return tx.investment_type || tx.package ? "investment" : tx.type;
 }

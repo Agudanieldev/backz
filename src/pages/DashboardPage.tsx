@@ -9,7 +9,7 @@ import {
 import { useAuth } from "@/lib/auth";
 import { supabase } from "@/lib/supabase";
 import { currency, formatDate, money } from "@/lib/format";
-import { investmentTypeLabel } from "@/lib/investmentPlans";
+import { investmentTypeLabel, requestTypeLabel } from "@/lib/investmentPlans";
 import type { Transaction } from "@/lib/types";
 import { PageHeader } from "@/components/composite/PageHeader";
 import { StatCard } from "@/components/composite/StatCard";
@@ -219,7 +219,7 @@ export default function DashboardPage() {
                   >
                     <div className="min-w-0">
                       <p className="text-xs font-semibold capitalize text-text-secondary">
-                        {tx.type}
+                        {requestTypeLabel(tx)}
                       </p>
                       <p className="mt-0.5 text-[0.625rem] text-text-muted">
                         {formatDate(tx.created_at)}
@@ -262,7 +262,7 @@ export default function DashboardPage() {
                         <Td className="whitespace-nowrap">
                           {formatDate(tx.created_at)}
                         </Td>
-                        <Td className="capitalize">{tx.type}</Td>
+                        <Td className="capitalize">{requestTypeLabel(tx)}</Td>
                         <Td
                           translate="no"
                           className="tabular-nums whitespace-nowrap font-semibold text-text-primary"
